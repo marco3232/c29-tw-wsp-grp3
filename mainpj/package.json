@@ -1,0 +1,38 @@
+{
+  "name": "mainpj",
+  "version": "1.0.0",
+  "description": "Carts\r Stock\r login and register->\r (1)admin\r (2)user\r (3)Vip user[maybe do]\r contact us->google map\r catorlog\r filter->\r (1)by name[A-Z]\r (2)by creat date[small->big number]\r deliver(maybe do)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "data": "psql -f ./sql/schema.sql && ts-node init-data.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.17.10",
+    "@types/formidable": "^3.4.5",
+    "@types/jsonfile": "^6.1.4",
+    "@types/node": "^20.10.2",
+    "@types/pg": "^8.10.9",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "formidable": "^3.5.1",
+    "hash": "^0.2.1",
+    "jsonfile": "^6.1.0",
+    "middleware": "^1.0.0",
+    "pg": "^8.11.3",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2",
+    "xlsx": "^0.18.5"
+  }
+}
