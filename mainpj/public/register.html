@@ -11,35 +11,40 @@
     <div class="container">
       <div class="title">Registration</div>
       <div class="content">
-        <form action="#">
+        <form id="regis-form" action="./register" method="post" type="submit">
           <div class="user-details">
             <div class="input-box">
               <span class="details">First name</span>
-              <input type="text" placeholder="Enter your name" required />
+              <input type="text" placeholder="Enter your name" value="asda" required />
             </div>
             <div class="input-box">
               <span class="details">Last name</span>
-              <input type="text" placeholder="Enter your username" required />
+              <input type="text" placeholder="Enter your username" value="asdas" required />
             </div>
             <div class="input-box">
               <span class="details">Email</span>
-              <input type="text" placeholder="Enter your email" required />
+              <input type="text" placeholder="Enter your email" name="email" value="123@tecky.io" required/>
             </div>
             <div class="input-box">
               <span class="details">Contact Number</span>
-              <input type="text" placeholder="Enter your number" required />
+              <input type="text" placeholder="Enter your number" value="22211333" required />
             </div>
             <div class="input-box">
               <span class="details">Password</span>
-              <input type="text" placeholder="Enter your password" required />
+              <input type="text" placeholder="Enter your password" name="passwordInput1" value="334411" required />
+            </div>
+            <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input type="text" placeholder="Confirm your password" name="passwordInput2" value="334411" required />
             </div>
           </div>
 
           <div class="button">
-            <input type="submit" value="Register" />
+            <input id="regis-button" type="submit" value="Register" ></input>
           </div>
         </form>
       </div>
     </div>
+   <script src="register.js"></script>
   </body>
 </html>
