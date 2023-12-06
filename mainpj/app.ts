@@ -12,7 +12,7 @@ import { checkPassword } from "./hash";
 
 export type UserListType = [{ username: string; password: string }];
 
-// ########open when DB having data#########
+
 dotenv.config();
 
 const pgClient = new pg.Client({
