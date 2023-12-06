@@ -26,23 +26,23 @@ CREATE TABLE users(
 --     FOREIGN KEY (user_id) REFERENCES users(id),
 --     FOREIGN KEY (product_option_id) REFERENCES product_options(id)
 -- );
--- CREATE TABLE products(
---     id SERIAL PRIMARY KEY,
---     description VARCHAR(255) NOT NULL,
---     color VARCHAR(255) NOT NULL,
---     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
--- );
--- CREATE TABLE product_options(
---     id SERIAL PRIMARY KEY,
---     product_id INT NOT NULL,
---     size VARCHAR(255) NOT NULL,
---     unit_price INT NOT NULL,
---     stock INT NOT NULL,
---     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     FOREIGN KEY (product_id) REFERENCES products(id)
--- );
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    description VARCHAR(255) NOT NULL,
+    color VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE product_options(
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    size VARCHAR(255) NOT NULL,
+    unit_price INT NOT NULL,
+    stock INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
 -- CREATE TABLE receipts(
 --     id SERIAL PRIMARY KEY, -- RECEIPT IS INT?? --
 --     total INT NOT NULL,
