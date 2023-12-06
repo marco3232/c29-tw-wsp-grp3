@@ -25,12 +25,12 @@ function overrideRegisterDefaultAction() {
       console.log(result);
 
       window.location.href = "./login.html";
-    // } else {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "Register Failed",
-    //   });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Register Failed",
+      });
     }
   });
 }

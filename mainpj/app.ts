@@ -12,7 +12,6 @@ import { checkPassword, hashPassword } from "./hash";
 
 export type UserListType = [{ username: string; password: string }];
 
-
 dotenv.config();
 
 const pgClient = new pg.Client({
@@ -51,7 +50,7 @@ declare module "express-session" {
   }
 }
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // identifier
