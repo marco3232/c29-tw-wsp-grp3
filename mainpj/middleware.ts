@@ -19,3 +19,12 @@ export function isLoggedIn(req: Request, res: Response, next: NextFunction) {
     res.status(401).json({ message: "access denied.you are not logged in." });
   }
 }
+
+export function isAdminIn(req: Request, res: Response, next: NextFunction) {
+  // @ts-ignore
+  if (req.session.isAdmin) {
+    next();
+  } else {
+    res.status(401).json({ message: "access denied.you are not admin." });
+  }
+}

@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import dotenv from "dotenv";
 import pg from "pg";
-import { isLoggedIn } from "./middleware";
+import { isAdminIn, isLoggedIn } from "./middleware";
 // import { uploadFile } from "./middleware";
 import expressSession from "express-session";
 import { resolve } from "path";
@@ -25,13 +25,6 @@ pgClient.connect();
 const app = express();
 const port = 8080;
 
-// declare module "express-session" {
-//   interface SessionData {
-//     // username?: string;
-//     isLoggedIn?: boolean;
-//   }
-// }
-
 app.use(
   expressSession({
     secret: process.env.SECRET!, // open the string when completed
@@ -42,24 +35,13 @@ app.use(
 
 declare module "express-session" {
   interface SessionData {
-    username?: string;
     email?: string;
-    isLoggedIn?: boolean;
-    // passwordInPut1?: number;
-    // passwordInPut2?: number;
+    isAdmin?: boolean;
   }
 }
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// identifier
-app.use(express.static("public"));
-app.use(express.static("picture"));
-app.use(express.static("css"));
-app.use(express.static("js"));
-app.use(express.static("music"));
-app.use("/protected", express.static("private"));
 
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
@@ -101,23 +83,6 @@ app.post("/register", async (req: Request, res: Response) => {
   }
 });
 
-// json login
-// app.post("/login", async (req, res) => {
-//   let emailInput = req.body.email;
-//   let passwordInput = req.body.password;
-//   console.log("***", emailInput, passwordInput);
-
-//   let data: UserListType = await jsonfile.readFile("users.json");
-
-//   let isVerifed = loginCheck(emailInput, passwordInput, data);
-//   console.log("check is verifed", isVerifed);
-//   if (isVerifed) {
-//     req.session["isLoggedIn"] = true;
-//     res.redirect("/protected/admin.html");
-//   } else {
-//     res.send("username or password is incorrect");
-//   }
-// });
 app.post("/login", async (req, res) => {
   console.log(req.body.email, req.body.password);
 
@@ -143,14 +108,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// app.get("/email",isLoggedIn,async(req,res)=>{
-//   if(req.session.email){
-//     res.json({message:"get username success",data:req.session.email})
-//   }else {
-//     res.status(401).json({message:"not login!!!"})
-//   }
-// })
-
 app.get("/email", isLoggedIn, async (req, res) => {
   res.json({ message: "success", data: req.session.email });
 });
@@ -172,6 +129,13 @@ app.get("/logout", async (req, res) => {
 app.get("/hi", (req: Request, res: Response) => {
   res.send("hello world");
 });
+
+// identifier
+app.use(express.static("public"));
+app.use("/product", express.static("public/product.html"));
+app.use("/category", express.static("public/category.html"));
+app.use(isLoggedIn, express.static("private"));
+app.use("/admin", isAdminIn, express.static("admin"));
 
 app.use((req: Request, res: Response) => {
   res.status(404).sendFile(resolve("public/404.html"));
