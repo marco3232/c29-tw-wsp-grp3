@@ -42,6 +42,7 @@ CREATE TABLE products(
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id)
+
 );
 CREATE TABLE product_options(
     id SERIAL PRIMARY KEY,

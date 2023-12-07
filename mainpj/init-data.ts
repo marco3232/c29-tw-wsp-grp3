@@ -16,7 +16,7 @@ async function main() {
   await insertUsers();
   await insertCategories();
   await insertProducts();
-  await inserProductOptions();
+  await insertProductOptions();
   await client.end();
 }
 
@@ -114,9 +114,9 @@ async function insertProducts() {
 
   for (let entry of productData) {
     await client.query(
-      `INSERT INTO products(name,description,unit_price,category_id) 
-  VALUES ($1,$2,$3,$4)`,
-      [entry.name, entry.description, entry.unit_price, entry.category_id]
+      `INSERT INTO products(name,description,unit_price,category_id,image) 
+  VALUES ($1,$2,$3,$4,$5)`,
+      [entry.name, entry.description, entry.unit_price, entry.category_id,entry.image]
     );
   }
 }
@@ -126,7 +126,7 @@ type productOptionType = {
   size: string;
   stock: number;
 };
-async function inserProductOptions() {
+async function insertProductOptions() {
   let productOptionData: productOptionType[] = [
     {
       product_id: 1,
