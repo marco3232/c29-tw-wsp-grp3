@@ -43,6 +43,13 @@ declare module "express-session" {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/category", async (req, res) => {
+  let queryResult = await pgClient.query("SELECT * FROM  products ORDER BY id");
+  console.log(queryResult.rows);
+  res.json(queryResult.rows);
+});
+
+
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
   console.log("app.ts 54");

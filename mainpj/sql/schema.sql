@@ -1,9 +1,9 @@
--- \c wspproject;
+DROP DATABASE wspproject;
+CREATE DATABASE wspproject;
 
--- CREATE DATABASE wspproject; --
--- DROP DATABASE wspproject; --
--- DROP TABLE users; --
 
+
+\c wspproject;
 
 
 CREATE TABLE users(
@@ -26,23 +26,34 @@ CREATE TABLE users(
 --     FOREIGN KEY (user_id) REFERENCES users(id),
 --     FOREIGN KEY (product_option_id) REFERENCES product_options(id)
 -- );
-CREATE TABLE products(
+CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
-    description VARCHAR(255) NOT NULL,
-    color VARCHAR(255),
+    name VARCHAR(255),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    unit_price VARCHAR(255),
+    category_id INT,
+    image VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
 CREATE TABLE product_options(
     id SERIAL PRIMARY KEY,
-    product_id INT NOT NULL,
-    size VARCHAR(255) NOT NULL,
-    unit_price INT NOT NULL,
-    stock INT NOT NULL,
+    product_id INT,
+    size VARCHAR(255),
+    stock INT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
+
 -- CREATE TABLE receipts(
 --     id SERIAL PRIMARY KEY, -- RECEIPT IS INT?? --
 --     total INT NOT NULL,
