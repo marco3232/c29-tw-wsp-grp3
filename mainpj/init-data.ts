@@ -1,6 +1,5 @@
 import { Client } from "pg";
 import dotenv from "dotenv";
-// import xlsx from "xlsx";
 import { hashPassword } from "./hash";
 dotenv.config();
 
@@ -10,34 +9,7 @@ const client = new Client({
   password: process.env.DB_PASSWORD,
 });
 
-// type UserType = {
-//     username: string;
-//     password: string;
-//   };
-
-//   async function main() {
-//     await client.connect();
-
-//     const filePath = "dummy-data/users.xlsx";
-
-//     const workbook = xlsx.readFile(filePath);
-
-//     const userSheet = workbook.Sheets["user"];
-
-//     const usersData: UserType[] = xlsx.utils.sheet_to_json<UserType>(userSheet);
-
-//     for (let entry of usersData) {
-//       console.log(entry.username, entry.password);
-
-//       let hashed = await hashPassword(entry.password);
-//       await client.query(`INSERT INTO users (username,password) values ($1,$2)`, [
-//         entry.username,
-//         hashed,
-//       ]);
-//     }
-// }
-
-async function main() {
+async function isAdminData() {
   await client.connect();
   await client.query(`INSERT INTO users (email,password) values ($1,$2),($3,$4)`, [
     "marco@tecky.io",
@@ -47,4 +19,35 @@ async function main() {
   ]);
   await client.end();
 }
-main();
+isAdminData();
+
+async function categories() {
+  await client.connect();
+  await client.query(`INSERT INTO products (name,unit_price) values ($1,$2),($3,$4)`, [
+    "Jeans","100",
+    "Shirts","200",
+   
+  ]);
+  await client.end();
+}
+categories();
+
+async function productDetails() {
+  await client.connect();
+
+  const productIdResult = await client.query(`INSERT into product (name,unit_price) VALUES ($1,$2)`,['Tanjiro,Jeans'])
+  
+  
+  const productId = productIdResult.rows[0].id;
+  
+  await client.query(
+    `INSERT INTO product_options (size,stock,product_id) values ($1,$2,$3)`,
+    [
+      "S","10",productId,
+      "M","10",productId,
+      "L","10",productId,
+    ]
+  );
+  await client.end();
+}
+productDetails();

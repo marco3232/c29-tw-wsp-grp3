@@ -8,9 +8,9 @@ import expressSession from "express-session";
 import { resolve } from "path";
 import { checkPassword, hashPassword } from "./hash";
 // import jsonfile from "jsonfile";
-// import { loginCheck } from "./utils";
 
-export type UserListType = [{ username: string; password: string }];
+
+export type EmailListType = [{ email: string; password: string }];
 
 dotenv.config();
 
@@ -69,7 +69,7 @@ app.post("/register", async (req: Request, res: Response) => {
     );
 
     if (queryResult.rowCount != 0) {
-      res.status(400).json({ message: "username already exist" });
+      res.status(400).json({ message: "email already exist" });
     } else {
       console.log("app.ts 77");
       let hashed = await hashPassword(req.body.passwordInput1);
@@ -104,7 +104,7 @@ app.post("/login", async (req, res) => {
       res.status(401).json({ message: "password is incorrect" });
     }
   } else {
-    res.status(401).json({ message: "username is incorrect" }); // mark json username/password incorrect
+    res.status(401).json({ message: "email is incorrect" }); // mark json username/password incorrect
   }
 });
 

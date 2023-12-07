@@ -1,21 +1,25 @@
--- \c wspproject;
 
--- CREATE DATABASE wspproject; --
--- DROP DATABASE wspproject; --
--- DROP TABLE users; --
+DROP DATABASE test; --
+CREATE DATABASE test; --
+DROP TABLE users; --
+DROP TABLE carts; --
+DROP TABLE categories; --
+DROP TABLE products; --
+DROP TABLE product_options; --
+
+\c test;
 
 
-
-CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    contact_number int ,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE users(
+--     id SERIAL PRIMARY KEY,
+--     first_name VARCHAR(255),
+--     last_name VARCHAR(255),
+--     email VARCHAR(255) NOT NULL,
+--     password VARCHAR(255) NOT NULL,
+--     contact_number int ,
+--     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+-- );
 -- CREATE TABLE carts(
 --     id SERIAL PRIMARY KEY,
 --     user_id INT NOT NULL,
@@ -26,18 +30,28 @@ CREATE TABLE users(
 --     FOREIGN KEY (user_id) REFERENCES users(id),
 --     FOREIGN KEY (product_option_id) REFERENCES product_options(id)
 -- );
+CREATE TABLE categories(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+);
 CREATE TABLE products(
     id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    unit_price INT NOT NULL,
     description VARCHAR(255) NOT NULL,
-    color VARCHAR(255),
+    -- color VARCHAR(255),
+    category_id INT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 CREATE TABLE product_options(
     id SERIAL PRIMARY KEY,
     product_id INT NOT NULL,
     size VARCHAR(255) NOT NULL,
-    unit_price INT NOT NULL,
+    -- unit_price INT NOT NULL,
     stock INT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

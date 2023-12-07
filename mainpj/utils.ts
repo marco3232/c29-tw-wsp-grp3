@@ -1,12 +1,12 @@
-import { UserListType } from "./app";
+import { EmailListType } from "./app";
 
 export function loginCheck(
-  usernameInput: string,
+  emailInput: string,
   passwordInput: string,
-  data: UserListType
+  data: EmailListType
 ) {
   for (let entry of data) {
-    if (usernameInput == entry.username) {
+    if (emailInput == entry.email) {
       if (passwordInput == entry.password) return true;
     //   else return false;
     }

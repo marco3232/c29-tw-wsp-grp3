@@ -29,7 +29,7 @@ function overrideRegisterDefaultAction() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Register Failed",
+        text: "[Registration Failed]Email already exist!!!",
       });
     }
   });
