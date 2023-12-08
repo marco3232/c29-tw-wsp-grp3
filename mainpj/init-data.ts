@@ -81,7 +81,7 @@ async function insertProducts() {
     {
       name: "KAMADO TANJIRO Under",
       description:
-        "Only green color and very comfortable also can use also can use Sun Breathing",
+        "Only green color and very comfortable also can use combat style Sun Breathing",
       unit_price: 100,
       category_id: undersId,
       image: "under1.jpg",
