@@ -11,6 +11,14 @@ import { checkPassword, hashPassword } from "./hash";
 
 export type EmailListType = [{ email: string; password: string }];
 
+// export type UserListType = [{ username: string; password: string }];
+// type productType = {
+//   name: string;
+//   description: string;
+//   unit_price: number;
+//   category_id: number;
+//   image: string;
+// };
 dotenv.config();
 
 const pgClient = new pg.Client({
@@ -43,7 +51,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/category", async (req, res) => {
-  let queryResult = await pgClient.query("SELECT * FROM  products ORDER BY id");
+  let queryResult = await pgClient.query("SELECT * FROM  products");
   console.log(queryResult.rows);
   res.json(queryResult.rows);
 });

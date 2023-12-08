@@ -43,28 +43,29 @@ async function getProductDetail(id) {
 //       }
 //     })
 //   }
-window.onload = async () => {
+//////////////////////##########################################
+// window.onload = async () => {
 
-let data = await getProductDetail();
+// let data = await getProductDetail();
 
-  let allProductDetail = "";
+//   let allProductDetail = "";
 
-  for (let entry of data) {
+//   for (let entry of data) {
 
-    allProductDetail += 
-    ` <div class="card" style="width: 25rem">
-    <img src="./picture/${entry.image}" class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">${entry.name}</h5>
-      <p class="card-text">
-       ${entry.description}
-       ${entry.unit_price}
-      </p>
-      <a href="product_detail.html?id=1" class="btn btn-primary">Go to order page</a>
-    </div>
-  </div>`
+//     allProductDetail += 
+//     ` <div class="card" style="width: 25rem">
+//     <img src="./picture/${entry.image}" class="card-img-top" alt="..." />
+// //     <div class="card-body">
+// //       <h5 class="card-title">${entry.name}</h5>
+// //       <p class="card-text">
+// //        ${entry.description}
+// //        ${entry.unit_price}
+// //       </p>
+// //       <a href="product_detail.html?id=1" class="btn btn-primary">Go to order page</a>
+// //     </div>
+// //   </div>`
 
-  }
-  document.querySelector(".product-detail-area").innerHTML = allProductDetail;
-}
+//   }
+//   document.querySelector(".product-detail-area").innerHTML = allProductDetail;
+// }
 
