@@ -16,7 +16,7 @@ async function main() {
   await insertUsers();
   await insertCategories();
   await insertProducts();
-  await inserProductOptions();
+  await insertProductOptions();
   await client.end();
 }
 
@@ -103,6 +103,14 @@ async function insertProducts() {
       image: "under3.jpg",
     },
     {
+      name: "TOMIOKA GIYU Under",
+      description:
+        "Only blue color and very soft also can use combat style Water Breathing",
+      unit_price: 100,
+      category_id: undersId,
+      image: "under4.jpg",
+    },
+    {
       name: "KAMADO TANJIRO Pants",
       description:
         "Only green color and very comfortable also can use combat style Water Breathing",
@@ -114,9 +122,9 @@ async function insertProducts() {
 
   for (let entry of productData) {
     await client.query(
-      `INSERT INTO products(name,description,unit_price,category_id) 
-  VALUES ($1,$2,$3,$4)`,
-      [entry.name, entry.description, entry.unit_price, entry.category_id]
+      `INSERT INTO products(name,description,unit_price,category_id,image) 
+  VALUES ($1,$2,$3,$4,$5)`,
+      [entry.name, entry.description, entry.unit_price, entry.category_id,entry.image]
     );
   }
 }
@@ -126,7 +134,7 @@ type productOptionType = {
   size: string;
   stock: number;
 };
-async function inserProductOptions() {
+async function insertProductOptions() {
   let productOptionData: productOptionType[] = [
     {
       product_id: 1,
@@ -172,6 +180,36 @@ async function inserProductOptions() {
       product_id: 3,
       size: "L",
       stock: 33,
+    },
+    {
+      product_id: 4,
+      size: "S",
+      stock: 24,
+    },
+    {
+      product_id: 4,
+      size: "M",
+      stock: 0,
+    },
+    {
+      product_id: 4,
+      size: "L",
+      stock: 34,
+    },
+    {
+      product_id: 5,
+      size: "S",
+      stock: 15,
+    },
+    {
+      product_id: 5,
+      size: "M",
+      stock: 0,
+    },
+    {
+      product_id: 5,
+      size: "L",
+      stock: 35,
     },
   ];
 

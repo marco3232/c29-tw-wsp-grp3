@@ -9,7 +9,6 @@ import { resolve } from "path";
 import { checkPassword, hashPassword } from "./hash";
 // import jsonfile from "jsonfile";
 
-
 export type EmailListType = [{ email: string; password: string }];
 
 dotenv.config();
@@ -48,7 +47,6 @@ app.get("/category", async (req, res) => {
   console.log(queryResult.rows);
   res.json(queryResult.rows);
 });
-
 
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
@@ -137,11 +135,31 @@ app.get("/hi", (req: Request, res: Response) => {
   res.send("hello world");
 });
 
+app.get("/product", async (req: Request, res: Response) => {
+  console.log(req.query.id);
+
+  let basicResult = await pgClient.query(
+    "select * from products where products.id = $1",
+    [req.query.id]
+  );
+
+  console.log(basicResult.rows);
+
+  let stockResult = await pgClient.query(
+    "select size,stock from product_options where product_id = $1",
+    [req.query.id]
+  );
+
+  console.log("***********",stockResult.rows);
+
+  res.json({ data: req.query.id });
+});
+
 // identifier
 app.use(express.static("public"));
 app.use("/product", express.static("public/product.html"));
 app.use("/category", express.static("public/category.html"));
-app.use(isLoggedIn, express.static("private"));
+app.use(express.static("private"));
 app.use("/admin", isAdminIn, express.static("admin"));
 
 app.use((req: Request, res: Response) => {
