@@ -67,7 +67,7 @@ async function insertProducts() {
   // const jacketsId = result3.rows[0].id;
   
     // 心血
-  // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('HASHIBIRA INOSUKE Under','Only blue color and very soft also can use combat style Beast Breathing','100',(SELECT id from categories where name ='under'),'under3.jpg'),
+  // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('HASHIBIRA INOSUKE Under','Only green color and very soft also can use combat style Beast Breathing','100',(SELECT id from categories where name ='under'),'under3.jpg'),
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('TOMIOKA GIYU Under','Only blue color and very soft also can use combat style Water Breathing','100',(SELECT id from categories where name ='under'),'under4.jpg'),
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('KAMADO TANJIRO Pants','Only green color and very comfortable also can use combat style Water Breathing','200',(SELECT id from categories where name ='pants'),'pants1.jpg'),
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('AGATSUMA ZENITSU Pants','Only yellow color and very flexible also can use combat style Thunder Breathing','200',(SELECT id from categories where name ='pants'),'pants2.jpg'),
@@ -101,6 +101,14 @@ async function insertProducts() {
       unit_price: 100,
       category_id: undersId,
       image: "under3.jpg",
+    },
+    {
+      name: "TOMIOKA GIYU Under",
+      description:
+        "Only blue color and very soft also can use combat style Water Breathing",
+      unit_price: 100,
+      category_id: undersId,
+      image: "under4.jpg",
     },
     {
       name: "KAMADO TANJIRO Pants",
@@ -172,6 +180,36 @@ async function insertProductOptions() {
       product_id: 3,
       size: "L",
       stock: 33,
+    },
+    {
+      product_id: 4,
+      size: "L",
+      stock: 14,
+    },
+    {
+      product_id: 4,
+      size: "L",
+      stock: 33,
+    },
+    {
+      product_id: 4,
+      size: "L",
+      stock: 34,
+    },
+    {
+      product_id: 5,
+      size: "L",
+      stock: 15,
+    },
+    {
+      product_id: 5,
+      size: "L",
+      stock: 0,
+    },
+    {
+      product_id: 5,
+      size: "L",
+      stock: 35,
     },
   ];
 

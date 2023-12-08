@@ -10,8 +10,14 @@ import { checkPassword, hashPassword } from "./hash";
 // import jsonfile from "jsonfile";
 // import { loginCheck } from "./utils";
 
-export type UserListType = [{ username: string; password: string }];
-
+// export type UserListType = [{ username: string; password: string }];
+// type productType = {
+//   name: string;
+//   description: string;
+//   unit_price: number;
+//   category_id: number;
+//   image: string;
+// };
 dotenv.config();
 
 const pgClient = new pg.Client({
@@ -44,11 +50,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/category", async (req, res) => {
-  let queryResult = await pgClient.query("SELECT * FROM  products ORDER BY id");
+  let queryResult = await pgClient.query("SELECT * FROM  products");
   console.log(queryResult.rows);
   res.json(queryResult.rows);
 });
-
 
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
@@ -141,7 +146,7 @@ app.get("/hi", (req: Request, res: Response) => {
 app.use(express.static("public"));
 app.use("/product", express.static("public/product.html"));
 app.use("/category", express.static("public/category.html"));
-app.use(isLoggedIn, express.static("private"));
+app.use( express.static("private"));
 app.use("/admin", isAdminIn, express.static("admin"));
 
 app.use((req: Request, res: Response) => {
