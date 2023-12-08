@@ -151,16 +151,19 @@ app.get("/product", async (req: Request, res: Response) => {
     [req.query.id]
   );
 
-  console.log(basicResult.rows);
+  console.log(basicResult.rows[0]);
 
   let stockResult = await pgClient.query(
     "select size,stock from product_options where product_id = $1",
     [req.query.id]
   );
 
-  console.log("***********",stockResult.rows);
+  console.log("***********", stockResult.rows);
 
-  res.json({ data: req.query.id });
+  res.json({ basic_data: basicResult.rows[0],stock_data:stockResult.rows });
+  // let queryResult = await pgClient.query("SELECT * FROM products");
+  // console.log(queryResult.rows);
+  // res.json(queryResult.rows);
 });
 
 // identifier
