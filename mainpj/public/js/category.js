@@ -23,7 +23,7 @@ window.onload = async () => {
             <p class="card-text">
              <p> ${entry.description}<p>
              <p> ${entry.category_id} <p>
-             <p> Price $${entry.unit_price} <p>
+             <p> Price : $${entry.unit_price} <p>
             </p>
             <a href="product_detail.html" class="btn btn-primary">Check detail</a>
           </div>
