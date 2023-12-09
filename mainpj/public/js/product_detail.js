@@ -3,8 +3,9 @@ window.onload = async () => {
 
   let urlParams = new URLSearchParams(window.location.search);
   let targetId = urlParams.get("id");
-  console.log("prduct id: ", targetId);
+  // console.log("prduct id: ", targetId);
   const productDetails = await getProductDetail(targetId);
+  console.log("get data",productDetails)
   showProductDetails(productDetails);
 
   //   getProductDetail(targetId);
@@ -13,8 +14,8 @@ window.onload = async () => {
 async function getProductDetail(id) {
   const httpRes = await fetch(`/product?id=${id}`);
   const resp = await httpRes.json();
-  console.log(resp.basic_data);
-  console.log(resp.stock_data);
+  // console.log("this is basic data:",resp.basic_data);
+  // console.log("this is stock data:",resp.stock_data);
   return resp;
 }
 

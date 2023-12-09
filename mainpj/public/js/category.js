@@ -1,5 +1,20 @@
+console.log("this is category.js");
 
-console.log("category.js");
+window.onload = async () => {
+
+  let urlParams = new URLSearchParams(window.location.search);
+  let targetId = urlParams.get("id");
+  console.log("category id:", targetId);
+  const filterProducts = await getCategoryId(targetId);
+  console.log("this is filter", filterProducts);
+
+
+
+
+
+  getAllProducts();
+
+};
 
 async function getProducts() {
   let res = await fetch("/category");
@@ -7,13 +22,21 @@ async function getProducts() {
   console.log(result);
 
   return result;
+
 }
 
-window.onload = async () => {
+async function getCategoryId(id) {
+  const httpRes = await fetch(`/category?id=${id}`);
+  const resp = await httpRes.json();
+  // console.log("this is get categoryid",resp[0].category_id)
+  return resp;
+}
+
+async function getAllProducts() {
   let data = await getProducts();
 
   let allCategory = "";
-    // console.log(data);
+  // console.log(data);
   for (let entry of data) {
     allCategory += `
     <div class="card" style="width: 20rem">
@@ -32,6 +55,4 @@ window.onload = async () => {
   }
 
   document.querySelector(".product-area").innerHTML = allCategory;
-};
-
-
+}

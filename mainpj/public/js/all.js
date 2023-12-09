@@ -1,4 +1,6 @@
+
 // console.log("add nav bar232233", document.querySelector(".first"));
+
 
 document.querySelector(
   ".first"
@@ -41,3 +43,12 @@ document.querySelector(
       </div>
     </div>
   </nav>`;
+
+
+  document.querySelector(
+    ".title"
+  ).innerHTML = `<div class="topic">鬼滅之刃傭-商品鋪</div>`
+
+  document.querySelector(
+    ".display-music"
+  ).innerHTML = `<audio controls="" src="./music/lisa.mp3" id="music" loop="loop"></audio>`
