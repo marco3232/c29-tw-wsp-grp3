@@ -25,7 +25,7 @@ window.onload = async () => {
              <p> ${entry.category_id} <p>
              <p> Price : $${entry.unit_price} <p>
             </p>
-            <a href="product_detail.html" class="btn btn-primary">Check detail</a>
+            <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
           </div>
         </div>
 `;

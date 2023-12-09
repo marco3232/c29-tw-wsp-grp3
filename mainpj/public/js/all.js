@@ -1,4 +1,4 @@
-console.log("add nav bar232233", document.querySelector(".first"));
+// console.log("add nav bar232233", document.querySelector(".first"));
 
 document.querySelector(
   ".first"
