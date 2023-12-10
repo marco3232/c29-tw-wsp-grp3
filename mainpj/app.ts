@@ -52,14 +52,22 @@ app.use(express.json());
 
 app.get("/category", async (req, res) => {
   let queryResult = await pgClient.query("select * from products")
-  console.log("this is queryResult:",queryResult.rows); 
-  // let catResult = await pgClient.query(
-  //   "select * from categories where categories.name = $2",
-  //   [req.query.name]
-  // );
-  // console.log("this is cat R",catResult.rows)
+  console.log("this is queryResult:",queryResult.rows);
   res.json(queryResult.rows);
 });
+
+app.get("/category/filter", async (req, res) => {
+let filterResult = await pgClient.query(
+    "select * from products where products.category_id = $1",
+    [req.query.id]
+  );
+  console.log("getFilter", filterResult.rows);
+  res.json(filterResult.rows);
+
+});
+
+
+
 
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
@@ -149,14 +157,14 @@ app.get("/hi", (req: Request, res: Response) => {
 });
 
 app.get("/product", async (req: Request, res: Response) => {
-  console.log("this is get id",req.query.id);
+  console.log("this is get id", req.query.id);
 
   let basicResult = await pgClient.query(
     "select * from products where products.id = $1",
     [req.query.id]
   );
 
-  console.log("this is basic Result",basicResult.rows[0]);
+  console.log("this is basic Result", basicResult.rows[0]);
 
   let stockResult = await pgClient.query(
     "select size,stock from product_options where product_id = $1",
@@ -165,7 +173,7 @@ app.get("/product", async (req: Request, res: Response) => {
 
   console.log("this is stock", stockResult.rows);
 
-  res.json({ basic_data: basicResult.rows[0],stock_data:stockResult.rows });
+  res.json({ basic_data: basicResult.rows[0], stock_data: stockResult.rows });
   // let queryResult = await pgClient.query("SELECT * FROM products");
   // console.log(queryResult.rows);
   // res.json(queryResult.rows);

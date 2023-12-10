@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/cart.css" />
-  </head>
-  <body>
+</head>
+<body>
     <header id="site-header">
-      <div class="container">
-        <h1>Shopping cart</h1>
-      </div>
-    </header>
+		<div class="container">
+			<h1>Shopping cart </h1>
+		</div>
+	</header>
 
-    <div class="container">
-      <section id="cart">
-        <article class="product">
-          <header>
-            <a class="remove">
-              <img src="#" alt="" />
+	<div class="container">
 
-              <h3>Remove product</h3>
-            </a>
-          </header>
+		<section id="cart"> 
+			<article class="product">
+				<header>
+					<a class="remove">
+						<img src="#" alt="">
 
-          <div class="content">
-            <h1>Name</h1>
+						<h3>Remove product</h3>
+					</a>
+				</header>
 
-            description
+				<div class="content">
 
-            <div
-              title="You have selected this product to be shipped in the color yellow."
-              style="top: 0"
-              class="color yellow"
-            ></div>
-            <div style="top: 43px" class="type small">XXL</div>
-          </div>
+					<h1>Name</h1>
 
-          <footer class="content">
-            <span class="qt-minus">-</span>
-            <span class="qt">2</span>
-            <span class="qt-plus">+</span>
+					description
 
-            <h2 class="full-price">total price</h2>
+					<div title="You have selected this product to be shipped in the color yellow." style="top: 0" class="color yellow"></div>
+					<div style="top: 43px" class="type small">XXL</div>
+				</div>
 
-            <h2 class="price">unit_price</h2>
-          </footer>
-        </article>
-      </section>
-    </div>
+				<footer class="content">
+					<span class="qt-minus">-</span>
+					<span class="qt">2</span>
+					<span class="qt-plus">+</span>
 
-    <footer id="site-footer">
-      <div class="container clearfix">
-        <div class="right">
-          <h1 class="total">Total: <span>$$$$$</span>$</h1>
-          <a class="btn">Checkout</a>
-        </div>
-      </div>
-    </footer>
-  </body>
+					<h2 class="full-price">
+						total price
+					</h2>
+
+					<h2 class="price">
+						unit_price
+					</h2>
+				</footer>
+			</article>
+
+
+		</section>
+
+	</div>
+
+	<footer id="site-footer">
+		<div class="container clearfix">
+
+			<div class="left">
+        <a href="index.html" class="btn">Home page</a>
+        <a href="/private/personal_page.html" class="btn">Personal Page</a>
+			</div>
+
+			<div class="right">
+				<h1 class="total">Total: <span>$$$$$</span>$</h1>
+				<a href="#" class="btn">Checkout</a>
+			</div>
+
+		</div>
+	</footer>
+</body>
 </html>
