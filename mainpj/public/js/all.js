@@ -1,6 +1,4 @@
-
 // console.log("add nav bar232233", document.querySelector(".first"));
-
 
 document.querySelector(
   ".first"
@@ -28,9 +26,10 @@ document.querySelector(
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              <li><a class="dropdown-item jacketOption" href="/category.html?id=3">Jacket</a></li>
-              <li><a class="dropdown-item underOption" href="/category.html?id=1">Under</a></li>
+              
+             <li><a class="dropdown-item underOption" href="/category.html?id=1">Under</a></li> 
               <li><a class="dropdown-item pantsOption" href="/category.html?id=2">Pants</a></li>
+              <li><a class="dropdown-item jacketOption" href="/category.html?id=3">Jacket</a></li>
             </ul>
           </li>
         </ul>
@@ -44,15 +43,15 @@ document.querySelector(
     </div>
   </nav>`;
 
+document.querySelector(
+  ".title"
+).innerHTML = `<div class="topic">鬼滅之刃傭-商品鋪</div>`;
 
-  document.querySelector(
-    ".title"
-  ).innerHTML = `<div class="topic">鬼滅之刃傭-商品鋪</div>`
-
-  document.querySelector(
-    ".display-music"
-  ).innerHTML = `<audio controls="" src="./music/lisa.mp3" id="music" loop="loop"></audio>`
-  document.querySelector(
-    ".viewall-button").innerHTML = `  <a class="btn btn-primary" href="category.html" role="button"
+document.querySelector(
+  ".display-music"
+).innerHTML = `<audio controls="" src="./music/lisa.mp3" id="music" loop="loop"></audio>`;
+document.querySelector(
+  ".viewall-button"
+).innerHTML = `  <a class="btn btn-primary" href="category.html" role="button"
     >View all</a
-  >`
+  >`;
