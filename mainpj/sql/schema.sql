@@ -16,16 +16,7 @@ CREATE TABLE users(
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE carts(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    product_option_id INT NOT NULL,
-    quantity INT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_option_id) REFERENCES product_options(id)
-);
+
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
@@ -53,14 +44,24 @@ CREATE TABLE product_options(
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+CREATE TABLE carts(
+    id SERIAL PRIMARY KEY,
+    user_id INT ,
+    product_option_id INT,
+    quantity INT ,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_option_id) REFERENCES product_options(id)
+);
 
 
 -- CREATE TABLE receipts(
---     id SERIAL PRIMARY KEY, -- RECEIPT IS INT?? --
---     total INT NOT NULL,
---     quantity INT NOT NULL,
---     user_id INT NOT NULL,
---     stripe_id VARCHAR(255) NOT NULL, -- link to payment --
+--     id SERIAL PRIMARY KEY,
+--     total INT,
+--     quantity INT ,
+--     user_id INT,
+--     stripe_id VARCHAR(255) , -- link to payment --
 --     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     FOREIGN KEY(user_id) REFERENCES users(id)
@@ -68,11 +69,11 @@ CREATE TABLE product_options(
 -- );
 -- CREATE TABLE receipt_subitems(
 --     id SERIAL PRIMARY KEY,
---     product_option_id INT NOT NULL,
---     unit_price INT NOT NULL,
---     quantity INT NOT NULL,
---     sub_total INT NOT NULL,
---     receipt_id INT NOT NULL, -- RECEIPT IS INT?? --
+--     product_option_id INT,
+--     unit_price INT ,
+--     quantity INT ,
+--     sub_total INT ,
+--     receipt_id INT , -- RECEIPT IS INT?? --
 --     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     FOREIGN KEY (product_option_id) REFERENCES product_options(id),
@@ -80,12 +81,12 @@ CREATE TABLE product_options(
 -- );
 -- CREATE TABLE shipments(
 --     id SERIAL PRIMARY KEY,
---     contact_name VARCHAR(255) NOT NULL,
---     contact_number INT NOT NULL,
---     region VARCHAR(255) NOT NULL, -- HKI,KL,NT --
---     district VARCHAR(255) NOT NULL, -- 18區--
---     address VARCHAR(255) NOT NULL,
---     receipt_id INT NOT NULL, -- RECEIPT IS INT?? --
+--     contact_name VARCHAR(255),
+--     contact_number INT,
+--     region VARCHAR(255), -- HKI,KL,NT --
+--     district VARCHAR(255) , -- 18區--
+--     address VARCHAR(255) ,
+--     receipt_id INT , -- RECEIPT IS INT?? --
 --     status VARCHAR(255),
 --     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

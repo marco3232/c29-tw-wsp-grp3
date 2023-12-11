@@ -382,3 +382,10 @@ async function insertProductOptions() {
     );
   }
 }
+
+
+// async function insertCats(){
+//   `INSERT INTO cats (user_id,product_option_id,quantity) values ($1,$2,$3),`[
+
+//   ]
+// }

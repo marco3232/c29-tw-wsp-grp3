@@ -1,89 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+/* Set rates + misc */
+var taxRate = 0.05;
+var shippingRate = 15.00; 
+var fadeTime = 300;
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-        }
+/* Assign actions */
+$('.product-quantity input').change( function() {
+  updateQuantity(this);
+});
 
-        .contact-form label {
-            margin-bottom: 10px;
-        }
+$('.product-removal button').click( function() {
+  removeItem(this);
+});
 
-        .contact-form input[type="text"], .contact-form textarea {
-            margin-bottom: 20px;
-            padding: 8px;
-            width: 100%;
-        }
 
-        .contact-form input[type="submit"] {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-        }
+/* Recalculate cart */
+function recalculateCart()
+{
+  var subtotal = 0;
+  
+  /* Sum up row totals */
+  $('.product').each(function () {
+    subtotal += parseFloat($(this).children('.product-line-price').text());
+  });
+  
+  /* Calculate totals */
+  var tax = subtotal * taxRate;
+  var shipping = (subtotal > 0 ? shippingRate : 0);
+  var total = subtotal + tax + shipping;
+  
+  /* Update totals display */
+  $('.totals-value').fadeOut(fadeTime, function() {
+    $('#cart-subtotal').html(subtotal.toFixed(2));
+    $('#cart-tax').html(tax.toFixed(2));
+    $('#cart-shipping').html(shipping.toFixed(2));
+    $('#cart-total').html(total.toFixed(2));
+    if(total == 0){
+      $('.checkout').fadeOut(fadeTime);
+    }else{
+      $('.checkout').fadeIn(fadeTime);
+    }
+    $('.totals-value').fadeIn(fadeTime);
+  });
+}
 
-        .contact-form input[type="submit"]:hover {
-            background-color: #45a049;
-        }
 
-        .contact-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+/* Update quantity */
+function updateQuantity(quantityInput)
+{
+  /* Calculate line price */
+  var productRow = $(quantityInput).parent().parent();
+  var price = parseFloat(productRow.children('.product-price').text());
+  var quantity = $(quantityInput).val();
+  var linePrice = price * quantity;
+  
+  /* Update line price display and recalc cart totals */
+  productRow.children('.product-line-price').each(function () {
+    $(this).fadeOut(fadeTime, function() {
+      $(this).text(linePrice.toFixed(2));
+      recalculateCart();
+      $(this).fadeIn(fadeTime);
+    });
+  });  
+}
 
-        .contact-info .item {
-            width: 30%;
-        }
 
-        .contact-info .item span {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .address {
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Contact Us</h1>
-        <div class="contact-info">
-            <div class="item">
-                <span>Phone:</span>
-                <span>+ 1235 2355 98</span>
-            </div>
-            <div class="item">
-                <span>Email:</span>
-                <span>info@yoursite.com</span>
-            </div>
-            <div class="item">
-                <span>Website:</span>
-                <span>yoursite.com</span>
-            </div>
-        </div>
-        <div class="address">
-            <p>Address: 198 West 21th Street, Suite 721 New York NY 10016</p>
-        </div>
-        <form class="contact-form" action="#" method="post" integrity="sha384-5nV2s9bWzW1TlJVaBKnPwDwNxDqXMbQWgkdVZbS/mRFtLrZnvFpL/MnGJ617/6Ef5QTzMHBnV/PpWnEJIJMKMHXnPVdCvkEkCcBmTNkLrHVbIYoNsVbCcBQWBTNsHwOuRnFcLsWdOeoD0Ce1oTN/LVbwOIHoPsQ0uMbIpBTjrH4OcWYFwcRtVxTpYdBnSJvEbPcTvOvTZYAJLVqsMvF+AeQRKNWBsP0tHdJNxdCs0nzpUmP4iNvhMFsNbFZdFdFNJXWBHo0oVnCwBpTxSdYb/bRmWdO
+/* Remove item from cart */
+function removeItem(removeButton)
+{
+  /* Remove row from DOM and recalc cart total */
+  var productRow = $(removeButton).parent().parent();
+  productRow.slideUp(fadeTime, function() {
+    productRow.remove();
+    recalculateCart();
+  });
+}

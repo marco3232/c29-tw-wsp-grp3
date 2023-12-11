@@ -1,11 +1,11 @@
 window.onload = async () => {
   // overrideFormDefaultSubmitAction()
-//   getUsername()
+  getUsername();
   let urlParams = new URLSearchParams(window.location.search);
   let targetId = urlParams.get("id");
   // console.log("prduct id: ", targetId);
   const productDetails = await getProductDetail(targetId);
-  console.log("get data",productDetails)
+  console.log("get data", productDetails);
   showProductDetails(productDetails);
 };
 
@@ -80,19 +80,18 @@ function updateCartCount() {
   const cartCountElement = document.querySelector(".size-button-area");
   cartCountElement.textContent = items.length.toString();
 }
-// async function getUsername() {
-//   let res = await fetch("/email");
+async function getUsername() {
+  let res = await fetch("/email");
 
-//   if (res.status == 200) {
-//     let result = await res.json();
-//     document.querySelector(
-//       "#email-display"
-//     ).innerHTML = `<h1>${result.data}</h1>`;
+  if (res.status == 200) {
+    let result = await res.json();
+    document.querySelector(
+      "#email-display"
+    ).innerHTML = `<h1>${result.data}</h1>`;
 
-//     document.querySelector(".bi-person-fill").href = "/personal_page.html";
-//   }
-
-// }
+    document.querySelector(".bi-person-fill").href = "/personal_page.html";
+  }
+}
 
 ////####################################################
 // function overrideFormDefaultSubmitAction() {
@@ -124,4 +123,4 @@ function updateCartCount() {
 //       }
 //     })
 //   }
-//////////////////////##########################################
+//////////////////////########################################
