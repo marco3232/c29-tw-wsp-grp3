@@ -16,16 +16,6 @@ CREATE TABLE users(
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE carts(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    product_option_id INT NOT NULL,
-    quantity INT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_option_id) REFERENCES product_options(id)
-);
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
@@ -52,6 +42,16 @@ CREATE TABLE product_options(
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id)
+);
+CREATE TABLE carts(
+    id SERIAL PRIMARY KEY,
+    user_id INT ,
+    product_option_id INT NOT NULL,
+    quantity INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_option_id) REFERENCES product_options(id)
 );
 
 

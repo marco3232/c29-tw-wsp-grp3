@@ -13,6 +13,7 @@ main();
 async function main() {
   await client.connect();
 
+  await insertCarts() ;
   await insertUsers();
   await insertCategories();
   await insertProducts();
@@ -52,8 +53,7 @@ type productType = {
 // products db
 async function insertProducts() {
   const result1 = await client.query(
-    `SELECT * FROM categories where name =$1`,
-    ["unders"]
+    `SELECT * FROM categories where name =$1`,["unders"]
   );
   const result2 = await client.query(
     `SELECT * FROM categories where name =$1`,["pants"]
@@ -382,3 +382,13 @@ async function insertProductOptions() {
     );
   }
 }
+
+async function insertCarts() {
+  for (let entry of cartData)
+  await client.query(
+`INSERT INTO carts (quantity) VALUES ($1,$2,$3)`,
+[entry.user_id, entry.product_option_id, entry.quantity]
+  );
+}
+
+

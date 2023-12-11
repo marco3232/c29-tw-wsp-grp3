@@ -51,29 +51,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/category", async (req, res) => {
-  
-  if(req.query.id){
+  if (req.query.id) {
     let allResult = await pgClient.query(
       "select * from products where products.category_id = $1",
       [req.query.id]
     );
     console.log("chceck all result!!!!!!", allResult.rows);
-  
-  
-    res.json({data:allResult.rows});
-  }else{
-    let allResult = await pgClient.query(
-      "select * from products"
-    );
+
+    res.json({ data: allResult.rows });
+  } else {
+    let allResult = await pgClient.query("select * from products");
     console.log("chceck all result!!!!!!", allResult.rows);
-  
-  
-    res.json({data:allResult.rows});
+
+    res.json({ data: allResult.rows });
   }
- 
 });
 
+app.get("/hot-picks", async (req, res) => {
+  let allResult = await pgClient.query("select * from products limit 4");
+  //change logic to select hot item when compeled
+  console.log("chceck all result!!!!!!", allResult.rows);
 
+  res.json({ data: allResult.rows });
+});
 
 app.post("/register", async (req: Request, res: Response) => {
   console.log(req.body.email, req.body.passwordInput1, req.body.passwordInput2);
@@ -163,7 +163,7 @@ app.get("/hi", (req: Request, res: Response) => {
 });
 
 app.get("/product", async (req: Request, res: Response) => {
-  console.log("this is get id", req.query.id);
+  // console.log("this is get id", req.query.id);
 
   let basicResult = await pgClient.query(
     "select * from products where products.id = $1",
@@ -179,9 +179,16 @@ app.get("/product", async (req: Request, res: Response) => {
 
   console.log("this is stock", stockResult.rows);
 
-let productOptionIdResult  = await pgClient.query("select id from product_options where product_id = $1",[req.query.id])
+  let productOptionIdResult = await pgClient.query(
+    "select id from product_options where product_id = $1",
+    [req.query.id]
+  );
 
-  res.json({ basic_data: basicResult.rows[0],stock_data:stockResult.rows,option_id_data:productOptionIdResult.rows});
+  res.json({
+    basic_data: basicResult.rows[0],
+    stock_data: stockResult.rows,
+    option_id_data: productOptionIdResult.rows,
+  });
 });
 
 // identifier
