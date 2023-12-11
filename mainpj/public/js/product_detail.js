@@ -58,19 +58,19 @@ function checkLength() {
   box.value.length > stockOnlyData == "disable";
 }
 
-function addToCart(test) {
-  console.log("check test", test);
-  //   const cartItems = sessionStorage.getItem("cartItems");
+// function addToCart(test) {
+//   console.log("check test", test);
+//   const cartItems = sessionStorage.getItem("cartItems");
 
-  //   const items = cartItems ? JSON.parse(cartItems) : [];
-  //   console.log(cartItems, "??????????");
+//   const items = cartItems ? JSON.parse(cartItems) : [];
+//   console.log(cartItems, "??????????");
 
-  //   items.push(item);
+//   items.push(item);
 
-  //   sessionStorage.setItem("cartItems", JSON.stringify(items));
-  //   updateCartCount();
-  //   console.log(item);
-}
+//   sessionStorage.setItem("cartItems", JSON.stringify(items));
+//   updateCartCount();
+//   console.log(item);
+// }
 
 function updateCartCount() {
   const cartItems = sessionStorage.getItem("cartItems");
