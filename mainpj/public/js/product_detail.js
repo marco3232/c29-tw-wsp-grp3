@@ -1,3 +1,5 @@
+let selectedProductOptionId;
+
 window.onload = async () => {
   // overrideFormDefaultSubmitAction()
   getUsername();
@@ -30,9 +32,11 @@ async function showProductDetails(productData) {
     <p class="product-price">$${basicData.unit_price}</p>
     <div class="add-to-cart" >
     <div class="size-button-area"></div>
-    <input type="text" name="quantity" id="box-tag" class="qty-box" value="1" />
+    <input type="text" name="quantity" id="quantity" class="qty-box" value="1" />
   
-    <p><input  type="submit" value="Add to cart" class="btn" /></p>
+    <div>
+    <button class="btn" id="addToCart-area" onclick="addToCart()" > Add to cart</button>
+    </div>
     </div>
     </div>
     `;
@@ -44,7 +48,7 @@ async function showProductDetails(productData) {
     sizeDetail += ` <button   ${
       stockData[i].stock <= 0
         ? "disabled"
-        : `onclick='addToCart(${optionIdData[i].id})'`
+        : `onclick='selectSize("${optionIdData[i].id}")'`
     }>${stockData[i].size}</button>`;
   }
   sizeDetail += `</div>`;
@@ -58,28 +62,52 @@ function checkLength() {
   box.value.length > stockOnlyData == "disable";
 }
 
-// function addToCart(test) {
-//   console.log("check test", test);
+function selectSize(targetProductOptionId) {
+  selectedProductOptionId = targetProductOptionId;
+  console.log("check", selectedProductOptionId);
+}
+
+async function addToCart() {
+  let quantity = document.querySelector("#quantity").value;
+  console.log("product option id is:", selectedProductOptionId, quantity);
+
+  let res = await fetch("/addCart", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      product_option_id: selectedProductOptionId,
+      quantity: quantity,
+    }),
+  });
+
+  // document
+  //   .querySelector("#addToCart-area")
+  //   .addEventListener("submit", async (e) => {});
+
+  // const cartItems = sessionStorage.getItem("cartItems");
+
+  // const items = cartItems ? JSON.parse(cartItems) : [];
+  // console.log(cartItems, "??????????");
+
+  // items.push(stockId);
+
+  // sessionStorage.setItem("cartItems", JSON.stringify(items));
+  // updateCartCount();
+  // console.log(stockId);
+  // window.location.reload ()
+  // }
+}
+
+// function updateCartCount() {
 //   const cartItems = sessionStorage.getItem("cartItems");
 
 //   const items = cartItems ? JSON.parse(cartItems) : [];
-//   console.log(cartItems, "??????????");
 
-//   items.push(item);
-
-//   sessionStorage.setItem("cartItems", JSON.stringify(items));
-//   updateCartCount();
-//   console.log(item);
+//   const cartCountElement = document.querySelector(".size-button-area");
+//   cartCountElement.textContent = items.length.toString();
 // }
-
-function updateCartCount() {
-  const cartItems = sessionStorage.getItem("cartItems");
-
-  const items = cartItems ? JSON.parse(cartItems) : [];
-
-  const cartCountElement = document.querySelector(".size-button-area");
-  cartCountElement.textContent = items.length.toString();
-}
 async function getUsername() {
   let res = await fetch("/email");
 

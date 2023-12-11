@@ -67,9 +67,9 @@ app.get("/category", async (req, res) => {
   }
 });
 
-app.get("/hot-picks", async (req, res) => {
+app.get("/hot-picks", async (req: Request, res: Response) => {
   let allResult = await pgClient.query("select * from products limit 4");
-  //change logic to select hot item when compeled
+  //change logic to select hot item when
   console.log("chceck all result!!!!!!", allResult.rows);
 
   res.json({ data: allResult.rows });
@@ -189,6 +189,17 @@ app.get("/product", async (req: Request, res: Response) => {
     stock_data: stockResult.rows,
     option_id_data: productOptionIdResult.rows,
   });
+});
+
+app.post("/addCart", async (req, res) => {
+  console.log(req.body, req.session?.email);
+
+  await pgClient.query(
+    "INSERT INTO carts (product_option_id,user_id,quantity) VALUES  ($1,(SELECT id from users where email = $2),$3)",
+    [req.body.product_option_id, req.session.email, req.body.quantity]
+  );
+
+  res.json({ message: "added to cart" });
 });
 
 // identifier
