@@ -1,60 +1,68 @@
 body {
-    background-color: red;
+    background-color: rgb(140, 129, 129);
   }
 
-  .second {
-    box-sizing: 500px;
+  .card-title{
+    font-size: 100%;
   }
 
-.product-detail-area {
-    background-size: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    width: 90%;
-    height: fit-content;
-}
-
-
-  .product-detail-container {
-    margin: 10px;
+  .card-body{
+    font-size: 100%;
   }
-  
-  .product-detail {
-    width: 200px;
-    height: 200px;
-    background-color: rgb(242, 225, 104);
-    margin: 5px;
-    position: relative;
+
+  .product-detail-area {
+      background-size: auto;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 90%;
+      height: fit-content;
   }
   
-  .control-button-area {
-    width: 100%;
+  .size-button-area {
+    font-size: 40px;
+  }
+  
+  .add-cart{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  .qt, .qt-plus, .qt-minus {
+    display: block;
+    float: left;
+  }
+  
+  .qt {
+    font-size: 15px;
+    line-height: 25px;
+    width: 50px;
+    text-align: center;
+  }
+  
+  .qt-plus, .qt-minus {
+    background: #fcfcfc;
+    border: none;
+    font-size: 20px;
+    font-weight: 300;
     height: 100%;
-    position: absolute;
-    top:0
-  
+    padding: 10px;
+    -webkit-transition: background .2s linear;
+    -moz-transition: background .2s linear;
+    -ms-transition: background .2s linear;
+    -o-transition: background .2s linear;
+    transition: background .2s linear;
   }
   
-  .fa-solid {
-    background-color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    position: absolute;
+  .qt-plus:hover, .qt-minus:hover {
+    background: #53b5aa;
+    color: #fff;
+    cursor: pointer;
   }
   
-  .fa-trash-can {
-    right: -20px;
-    top: -10px;
+  .qt-plus {
+    line-height: 25px;
   }
   
-  .fa-pen-to-square {
-    right: -20px;
-    top: 185px;
+  .qt-minus {
+    line-height: 25px;
   }
-  

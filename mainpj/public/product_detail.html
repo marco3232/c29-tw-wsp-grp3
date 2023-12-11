@@ -9,8 +9,32 @@
   <body>
     <h1>Product Details</h1>
     <div class="second">
-    <div class="product-detail-area"></div>
-    <div class="size-button-area"></div>
+    
+      <div class="product-detail-area"></div>
+
+      <!-- <script>
+    function addToCart(item) {
+      const cartItems = sessionStorage.getItem("cartItems");
+      
+      const items = cartItems ? JSON.parse(cartItems) : [];
+      console.log(cartItems,"??????????")
+      
+      items.push(item);
+      
+      sessionStorage.setItem("cartItems", JSON.stringify(items));
+      updateCartCount();
+      console.log(addToCart(item));
+      }
+      
+      function updateCartCount() {
+      const cartItems = sessionStorage.getItem("cartItems");
+      
+      const items = cartItems ? JSON.parse(cartItems) : [];
+      
+      const cartCountElement = document.getElementById("cart-count");
+      cartCountElement.textContent = items.length.toString();
+      }
+    </script> -->
     </div>
   </body>
   <script src="./js/product_detail.js"></script>

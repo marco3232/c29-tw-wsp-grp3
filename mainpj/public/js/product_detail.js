@@ -6,8 +6,6 @@ window.onload = async () => {
   console.log("prduct id: ", targetId);
   const productDetails = await getProductDetail(targetId);
   showProductDetails(productDetails);
-
-  //   getProductDetail(targetId);
 };
 
 async function getProductDetail(id) {
@@ -21,31 +19,65 @@ async function getProductDetail(id) {
 async function showProductDetails(productData) {
   let basicData = productData.basic_data;
   let stockData = productData.stock_data;
+  let optionIdData = productData.option_id_data;
+  //   let stockOnlyData = productData.stockOnly_data;
   let allProductDetail = "";
-
-  allProductDetail += ` <div class="card" style="width: 25rem">
-        <img src="./picture/${basicData.image}" class="card-img-top" alt="..." />
-        <div class="card-body">
-        <h5 class="card-title">${basicData.name}</h5>
-        <p class="card-text">
-        ${basicData.data}
-        ${basicData.description}
-        ${basicData.unit_price}
-        </p>
-        <a href="cart.html" class="btn btn-primary">Cart</a>
-        </div>
-        </div>`;
+  allProductDetail += ` <div class="card" style="width: 20rem">
+    <img src="./picture/${basicData.image}" class="card-img-top" alt="..." />
+    <div class="product-description">${basicData.description}
+    <h3 class="product-name">${basicData.name}</h3>
+    <p class="product-price">$${basicData.unit_price}</p>
+    <div class="add-to-cart" >
+    <div class="size-button-area"></div>
+    <input type="text" name="quantity" id="box-tag" class="qty-box" value="1" />
+  
+    <p><input  type="submit" value="Add to cart" class="btn" /></p>
+    </div>
+    </div>
+    `;
   document.querySelector(".product-detail-area").innerHTML = allProductDetail;
 
   let sizeDetail = `<div>`;
+
   for (let i = 0; i < 3; i++) {
-    sizeDetail += ` <button ${stockData[i].stock <= 0 ? "disabled" : ""}>${
-      stockData[i].size
-    }</button>`;
+    sizeDetail += ` <button   ${
+      stockData[i].stock <= 0
+        ? "disabled"
+        : `onclick='addToCart(${optionIdData[i].id})'`
+    }>${stockData[i].size}</button>`;
   }
   sizeDetail += `</div>`;
 
   document.querySelector(".size-button-area").innerHTML = sizeDetail;
+}
+
+function checkLength() {
+  const box = document.getElementById("box-tag");
+
+  box.value.length > stockOnlyData == "disable";
+}
+
+function addToCart(test) {
+  console.log("check test", test);
+  //   const cartItems = sessionStorage.getItem("cartItems");
+
+  //   const items = cartItems ? JSON.parse(cartItems) : [];
+  //   console.log(cartItems, "??????????");
+
+  //   items.push(item);
+
+  //   sessionStorage.setItem("cartItems", JSON.stringify(items));
+  //   updateCartCount();
+  //   console.log(item);
+}
+
+function updateCartCount() {
+  const cartItems = sessionStorage.getItem("cartItems");
+
+  const items = cartItems ? JSON.parse(cartItems) : [];
+
+  const cartCountElement = document.querySelector(".size-button-area");
+  cartCountElement.textContent = items.length.toString();
 }
 
 ////####################################################
