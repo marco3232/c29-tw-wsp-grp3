@@ -71,7 +71,7 @@ async function addToCart() {
   let quantity = document.querySelector("#quantity").value;
   console.log("product option id is:", selectedProductOptionId, quantity);
 
-  let res = await fetch("/addCart", {
+  let resp = await fetch("/addCart", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +79,9 @@ async function addToCart() {
     body: JSON.stringify({
       product_option_id: selectedProductOptionId,
       quantity: quantity,
+    
     }),
+    
   });
 
   // document
