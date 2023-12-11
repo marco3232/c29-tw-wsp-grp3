@@ -1,6 +1,6 @@
 window.onload = async () => {
   // overrideFormDefaultSubmitAction()
-
+  getUsername()
   let urlParams = new URLSearchParams(window.location.search);
   let targetId = urlParams.get("id");
   // console.log("prduct id: ", targetId);
@@ -29,7 +29,7 @@ async function showProductDetails(productData) {
         <div class="card-body">
         <h5 class="card-title">${basicData.name}</h5>
         <p class="card-text">
-        ${basicData.data}
+        
         ${basicData.description}
         ${basicData.unit_price}
         </p>
@@ -47,6 +47,19 @@ async function showProductDetails(productData) {
   sizeDetail += `</div>`;
 
   document.querySelector(".size-button-area").innerHTML = sizeDetail;
+}
+
+async function getUsername() {
+  let res = await fetch("/email");
+
+  if (res.status == 200) {
+    let result = await res.json();
+    document.querySelector(
+      "#email-display"
+    ).innerHTML = `<h1>${result.data}</h1>`;
+
+    document.querySelector(".bi-person-fill").href = "/personal_page.html";
+  }
 }
 
 ////####################################################

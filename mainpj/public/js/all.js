@@ -52,3 +52,7 @@ document.querySelector(
   document.querySelector(
     ".display-music"
   ).innerHTML = `<audio controls="" src="./music/lisa.mp3" id="music" loop="loop"></audio>`
+  document.querySelector(
+    ".viewall-button").innerHTML = `  <a class="btn btn-primary" href="category.html" role="button"
+    >View all</a
+  >`
