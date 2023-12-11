@@ -28,9 +28,9 @@ document.querySelector(
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              <li><a class="dropdown-item jacketOption" href="/category.html?id=1">Jacket</a></li>
-              <li><a class="dropdown-item underOption" href="/category.html?id=2">Under</a></li>
-              <li><a class="dropdown-item pantsOption" href="/category.html?id=3">Pants</a></li>
+              <li><a class="dropdown-item jacketOption" href="/category.html?id=3">Jacket</a></li>
+              <li><a class="dropdown-item underOption" href="/category.html?id=1">Under</a></li>
+              <li><a class="dropdown-item pantsOption" href="/category.html?id=2">Pants</a></li>
             </ul>
           </li>
         </ul>

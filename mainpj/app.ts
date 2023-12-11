@@ -51,18 +51,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/category", async (req, res) => {
-  let queryResult = await pgClient.query("select * from products")
-  console.log("this is queryResult:",queryResult.rows);
-  let filterResult = await pgClient.query(
-    "select * from products where products.category_id = $1",
-    [req.query.id]
-  );
-  console.log("getFilter", filterResult.rows);
-
-
-  res.json({allProduct:queryResult.rows,filterProduct:filterResult.rows});
+  
+  if(req.query.id){
+    let allResult = await pgClient.query(
+      "select * from products where products.category_id = $1",
+      [req.query.id]
+    );
+    console.log("chceck all result!!!!!!", allResult.rows);
+  
+  
+    res.json({data:allResult.rows});
+  }else{
+    let allResult = await pgClient.query(
+      "select * from products"
+    );
+    console.log("chceck all result!!!!!!", allResult.rows);
+  
+  
+    res.json({data:allResult.rows});
+  }
+ 
 });
-
 
 
 

@@ -5,60 +5,32 @@ window.onload = async () => {
   let targetId = urlParams.get("id");
   console.log("category id:", targetId);
 
-  const filterProducts = await getCategoryId(targetId);
-  console.log("all", filterProducts);
-
-  // showProductDetails(filterProducts);
-  getAllProducts();
+  renderProducts(targetId);
   getUsername();
 };
 
-async function getProducts() {
-  let res = await fetch("/category");
-  let result = await res.json();
-  // console.log(result);
-
-  return result;
+async function getProducts(id) {
+  if (id) {
+    const httpRes = await fetch(`/category?id=${id}`);
+    const resp = await httpRes.json();
+    // console.log("this is get categoryid",resp)
+    return resp;
+  } else {
+    const httpRes = await fetch(`/category`);
+    const resp = await httpRes.json();
+    // console.log("this is get categoryid",resp)
+    return resp;
+  }
 }
 
-async function getCategoryId(id) {
-  const httpRes = await fetch(`/category?id=${id}`);
-  const resp = await httpRes.json();
-  // console.log("this is get categoryid",resp)
-  return resp;
-}
+async function renderProducts(id) {
+  let result = await getProducts(id);
 
-// async function showProductDetails(productData) {
-//   let entry = productData.filterProduct;
-//   let filter = "";
+  let all = result.data;
 
-//   filter += `
-//   <div class="card" style="width: 20rem">
-//         <img src="/picture/${entry.image}" class="card-img-top" alt="..." />
-//         <div class="card-body">
-//           <h5 class="card-title">${entry.name}</h5>
-//           <p class="card-text">
-//            <p> ${entry.description}<p>
-//            <p> ${entry.category_id} <p>
-//            <p> Price : $${entry.unit_price} <p>
-//           </p>
-//           <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
-//         </div>
-//       </div>
-
-// `;
-
-//   document.querySelector(".product-area").innerHTML = filter;
-// }
-
-async function getAllProducts() {
-  let data = await getProducts();
-  // let data2 = await getCategoryId(id)
-  let all = data.allProduct;
-  // let fil = data2.filterProduct
-  let allCategory = "";
+  let finalHTML = "";
   for (let entry of all) {
-    allCategory += `
+    finalHTML += `
     <div class="card" style="width: 25rem">
           <img src="/picture/${entry.image}" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -75,7 +47,7 @@ async function getAllProducts() {
 `;
   }
 
-  document.querySelector(".product-area").innerHTML = allCategory;
+  document.querySelector(".product-area").innerHTML = finalHTML;
 }
 
 async function getUsername() {
