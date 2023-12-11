@@ -46,13 +46,8 @@ CREATE TABLE product_options(
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
     user_id INT ,
-<<<<<<< HEAD
     product_option_id INT,
     quantity INT ,
-=======
-    product_option_id INT NOT NULL,
-    quantity INT NOT NULL,
->>>>>>> 20b6497eecd07f1ee42bb395170b2b79f28bc02b
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),

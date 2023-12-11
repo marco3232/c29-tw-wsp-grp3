@@ -58,8 +58,9 @@ function checkLength() {
   box.value.length > stockOnlyData == "disable";
 }
 
-// function addToCart(test) {
-//   console.log("check test", test);
+function addToCart(test) {
+  console.log("check test", test);
+}
 //   const cartItems = sessionStorage.getItem("cartItems");
 
 //   const items = cartItems ? JSON.parse(cartItems) : [];

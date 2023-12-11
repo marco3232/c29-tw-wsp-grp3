@@ -191,6 +191,13 @@ app.get("/product", async (req: Request, res: Response) => {
   });
 });
 
+app.post("/cart",async(req:Request,res:Response)=>{
+console.log(req.body.product_option_id,req.session.email);
+
+await pgClient.query(`INSERT INTO carts(product_option_id,user_id,quantity) VALUES($1,(SELECT id FROM users where email =$2),1)`,[req.body.product_id,req.session.email]);
+res.json ({message:"added cart"})
+})
+
 // identifier
 app.use(express.static("public"));
 app.use("/product", express.static("public/product.html"));

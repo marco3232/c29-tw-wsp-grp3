@@ -13,7 +13,7 @@ main();
 async function main() {
   await client.connect();
 
-  await insertCarts() ;
+  // await insertCarts() ;
   await insertUsers();
   await insertCategories();
   await insertProducts();
