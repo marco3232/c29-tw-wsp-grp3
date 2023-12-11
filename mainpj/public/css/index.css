@@ -1,6 +1,5 @@
 body {
-  background-color: yellow;
-  width: 100%;
+  background-color: rgb(183, 255, 0);
 }
 
 .title {
@@ -12,7 +11,7 @@ body {
   background-color: black;
   color: white;
   font-size: 50px;
-  width: 100%;
+  width: 1600px;
 }
 .first {
   display: flex;
@@ -21,7 +20,7 @@ body {
   color: black;
 }
 .navbar {
-  width: 100%;
+  width: 1600px;
   padding: 0px;
   font-size: 30px;
 }
@@ -40,15 +39,18 @@ body {
 .second {
   display: flex;
   justify-content: center;
-  width: 100%;
-}
-.card {
-  margin-right: 30px;
+  /* flex-wrap: wrap; */
 }
 .viewall-button {
   display: flex;
   justify-content: center;
   padding: 10px;
+}
+.product-area {
+  width: 1600px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
 .viewall-button > .btn {

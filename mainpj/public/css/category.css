@@ -39,7 +39,7 @@ body {
 .second {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .viewall-button {
   display: flex;
@@ -49,7 +49,8 @@ body {
 .product-area {
   width: 1600px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
 .viewall-button > .btn {

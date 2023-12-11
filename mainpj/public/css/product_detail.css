@@ -9,13 +9,21 @@ body {
   .card-body{
     font-size: 100%;
   }
+.product-detail-area {
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 90%;
+    height: fit-content;
+}
 
   .product-detail-area {
       background-size: auto;
       display: flex;
       flex-wrap: wrap;
       margin-top: 20px;
-      width: 90%;
+      width: 100%;
       height: fit-content;
   }
   
@@ -65,4 +73,26 @@ body {
   
   .qt-minus {
     line-height: 25px;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  .topic {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 50px;
+    width: 1600px;
+  }
+  .bi {
+    font-size: 40px;
+    color: white;
+    margin: 5px;
+  }
+  .viewall-button {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
   }

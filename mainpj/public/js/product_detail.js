@@ -1,18 +1,19 @@
 window.onload = async () => {
   // overrideFormDefaultSubmitAction()
-
+//   getUsername()
   let urlParams = new URLSearchParams(window.location.search);
   let targetId = urlParams.get("id");
-  console.log("prduct id: ", targetId);
+  // console.log("prduct id: ", targetId);
   const productDetails = await getProductDetail(targetId);
+  console.log("get data",productDetails)
   showProductDetails(productDetails);
 };
 
 async function getProductDetail(id) {
   const httpRes = await fetch(`/product?id=${id}`);
   const resp = await httpRes.json();
-  console.log(resp.basic_data);
-  console.log(resp.stock_data);
+  // console.log("this is basic data:",resp.basic_data);
+  // console.log("this is stock data:",resp.stock_data);
   return resp;
 }
 
@@ -79,6 +80,19 @@ function updateCartCount() {
   const cartCountElement = document.querySelector(".size-button-area");
   cartCountElement.textContent = items.length.toString();
 }
+// async function getUsername() {
+//   let res = await fetch("/email");
+
+//   if (res.status == 200) {
+//     let result = await res.json();
+//     document.querySelector(
+//       "#email-display"
+//     ).innerHTML = `<h1>${result.data}</h1>`;
+
+//     document.querySelector(".bi-person-fill").href = "/personal_page.html";
+//   }
+
+// }
 
 ////####################################################
 // function overrideFormDefaultSubmitAction() {
