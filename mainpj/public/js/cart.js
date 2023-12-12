@@ -6,19 +6,18 @@ async function inShoppingCart() {
   let finalHTML = "";
   for (let entry of resp) {
     finalHTML += `
-  <div class="card" style="width: 25rem">
-        <img src="/picture/${entry.image}" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">${entry.name}</h5>
-          <p class="card-text">
-           <p> ${entry.description}<p>
-           <p> ${entry.category_id} <p>
-           <p> Price : $${entry.unit_price} <p>
-           <p> Quantity ${entry.quantity}<p>
-          </p>
-          <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
-        </div>
-      </div>`;
+    <div class="row main align-items-center">
+    <div class="col-2"><img class="img-fluid" src="/picture/${entry.image}"></div>
+    <div class="col">
+      <div class="row text-muted">${entry.name}</div>
+      <div class="row description">${entry.description}</div>
+    </div>
+    <div class="col">
+      <!-- <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> -->
+      Qantity:${entry.quantity}
+    </div>
+    <div class="col">$${entry.unit_price}<span class="close">&#10005;</span></div>
+  </div>`
   }
   document.querySelector(".product-area").innerHTML = finalHTML;
 }
