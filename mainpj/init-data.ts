@@ -24,12 +24,17 @@ async function main() {
 // login user for test db
 async function insertUsers() {
   await client.query(
-    `INSERT INTO users (email,password) values ($1,$2),($3,$4)`,
-    [
+    `INSERT INTO users (first_name,last_name,email,password,contact_number) values ($1,$2,$3,$4,$5),($6,$7,$8,$9,$10)`,
+    [ "Marco",
+      "Wong",
       "marco@tecky.io",
       await hashPassword("marco"),
+      "99999999",
+      "Joz",
+      "Chow",
       "joz@tecky.io",
       await hashPassword("joz"),
+      "00000000"
     ]
   );
 }

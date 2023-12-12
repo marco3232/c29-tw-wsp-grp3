@@ -37,7 +37,7 @@ async function renderProducts(id) {
             <h5 class="card-title">${entry.name}</h5>
             <p class="card-text">
              <p> ${entry.description}<p>
-             <p> ${entry.category_id} <p>
+   
              <p> Price : $${entry.unit_price} <p>
             </p>
             <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>

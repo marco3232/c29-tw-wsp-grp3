@@ -55,29 +55,29 @@ CREATE TABLE carts(
 );
 
 
--- CREATE TABLE receipts(
---     id SERIAL PRIMARY KEY,
---     total INT,
---     quantity INT ,
---     user_id INT,
---     stripe_id VARCHAR(255) , -- link to payment --
---     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     FOREIGN KEY(user_id) REFERENCES users(id)
---     --FOREIGN KEY stripe_id REFERENCES-- until payment
--- );
--- CREATE TABLE receipt_subitems(
---     id SERIAL PRIMARY KEY,
---     product_option_id INT,
---     unit_price INT ,
---     quantity INT ,
---     sub_total INT ,
---     receipt_id INT , -- RECEIPT IS INT?? --
---     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     FOREIGN KEY (product_option_id) REFERENCES product_options(id),
---     FOREIGN key (receipt_id) REFERENCES receipts(id)
--- );
+CREATE TABLE receipts(
+    id SERIAL PRIMARY KEY,
+    total INT,
+    quantity INT ,
+    user_id INT,
+    stripe_id VARCHAR(255) , -- link to payment --
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+    --FOREIGN KEY stripe_id REFERENCES-- until payment
+);
+CREATE TABLE receipt_subitems(
+    id SERIAL PRIMARY KEY,
+    product_option_id INT,
+    unit_price INT ,
+    quantity INT ,
+    sub_total INT ,
+    receipt_id INT , -- RECEIPT IS INT?? --
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_option_id) REFERENCES product_options(id),
+    FOREIGN key (receipt_id) REFERENCES receipts(id)
+);
 -- CREATE TABLE shipments(
 --     id SERIAL PRIMARY KEY,
 --     contact_name VARCHAR(255),

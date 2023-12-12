@@ -50,3 +50,14 @@ async function inShoppingCart() {
 }
 
 //<button><span class="close">remove</span></button>
+
+// this is add to receipt function
+// async function addToReceipt(){
+//   let target = document.querySelector("#receipt-Form");
+//   console.log("***",target)
+//   target.addEventListener("submit",async(e)=>{
+//   e.preventDefault();
+//   })
+//   }
+  
+
