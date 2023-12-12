@@ -106,8 +106,8 @@ app.post("/register", async (req: Request, res: Response) => {
       console.log("app.ts 77");
       let hashed = await hashPassword(req.body.passwordInput1);
       await pgClient.query(
-        "INSERT INTO users (email,password) VALUES ($1,$2)",
-        [req.body.email, hashed]
+        "INSERT INTO users (first_name,last_name,email,password,contact_number) VALUES ($1,$2,$3,$4,$5)",
+        [req.body.first_name,req.body.last_name,req.body.email, hashed,req.body.contact_number]
       );
       console.log("app.ts 83");
       res.json({ message: "register success" });
@@ -194,7 +194,7 @@ app.get("/product", async (req: Request, res: Response) => {
 app.post("/addCart", isLoggedIn, async (req, res) => {
   console.log(req.body, req.session?.email);
 
-
+  // need to check stock count!!! use if ,else
 
   await pgClient.query(
     "INSERT INTO carts (product_option_id,user_id,quantity) VALUES  ($1,(SELECT id from users where email = $2),$3)",
@@ -204,14 +204,29 @@ app.post("/addCart", isLoggedIn, async (req, res) => {
   res.json({ message: "added to cart" });
 });
 
-app.get("/cart",async(req,res)=>{
+app.get("/cart", async (req, res) => {
+  let result = await pgClient.query(
+    "SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id where user_id = (SELECT id from users where email = $1)",
+    [req.session.email]
+  );
+  console.log("$$$$$$$$$$$$$$$", result.rows);
+  res.json(result.rows);
+});
+app.post("/thankyou", async (req, res) => {
+  console.log(req.body)
+  await pgClient.query(
+    "INSERT INTO receipts (total,quantity,user_id) VALUES ($1,$2,(SELECT id from users where email = $3)",
+    [req.body.total, req.body.quantity, req.session.email]
+ 
+  );
+  res.json({ message: "added to receipt" });
+});
 
-
-  let result = await pgClient.query("SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id where user_id = (SELECT id from users where email = $1)"
-  ,[req.session.email])
-  console.log("$$$$$$$$$$$$$$$",result.rows)
-  res.json(result.rows)
-})
+// app.get("/thankyou", async (req, res) => {
+//   let result = await pgClient.query(
+//     "select * from receipts join users on user_id = users.id join carts on users.id = carts.user_id join product_options on product_option_id = product_options.id;"
+//   );
+// });
 
 // app.get("/thankyou",async(req,res)=>{
 //   let result = await pgClient.query("SELECT * FROM receipts JOIN users on user_id = users.id join carts on users.id = carts.id")

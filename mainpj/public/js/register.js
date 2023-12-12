@@ -14,9 +14,12 @@ function overrideRegisterDefaultAction() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        first_name: form.first_name.value,
+        last_name:form.last_name.value,
         email: form.email.value,
         passwordInput1: form.passwordInput1.value,
         passwordInput2: form.passwordInput2.value,
+        contact_number: form.contact_number.value
       }),
     });
     console.log("re.js 18");

@@ -34,7 +34,7 @@ document.querySelector(
           </li>
         </ul>
         <form>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+         
         </form>
         <a class="bi bi-person-fill" href="login.html"></a>
 
