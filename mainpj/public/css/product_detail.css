@@ -96,3 +96,9 @@ body {
     justify-content: center;
     padding: 10px;
   }
+
+
+  .selected{
+    border-width: 5px;
+    border-color: aquamarine;
+  }

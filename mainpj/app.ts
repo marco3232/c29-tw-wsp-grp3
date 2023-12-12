@@ -191,7 +191,7 @@ app.get("/product", async (req: Request, res: Response) => {
   });
 });
 
-app.post("/addCart", async (req, res) => {
+app.post("/addCart", isLoggedIn, async (req, res) => {
   console.log(req.body, req.session?.email);
 
   await pgClient.query(
@@ -202,11 +202,39 @@ app.post("/addCart", async (req, res) => {
   res.json({ message: "added to cart" });
 });
 
-app.get("/cart",async(req:Request,res:Response)=>{
-  let result = await pgClient.query(`SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id`)
-  console.log("$$$$$$$$$$$$$$$",result.rows)
-  res.json(result.rows)
-})
+app.get("/cart", async (req: Request, res: Response) => {
+  let result = await pgClient.query(
+    `SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id`
+  );
+  console.log("$$$$$$$$$$$$$$$", result.rows);
+
+  res.json(result.rows);
+
+  let allResult = await pgClient.query(
+    "select * from users where users.category_id = $1"
+  );
+  //change logic to select hot item when
+  console.log("chceck all result!!!!!!", allResult.rows);
+
+  res.json({ data: allResult.rows });
+});
+
+app.get("/category", async (req, res) => {
+  if (req.query.id) {
+    let allResult = await pgClient.query(
+      "select * from products where products.category_id = $1",
+      [req.query.id]
+    );
+    console.log("chceck all result!!!!!!", allResult.rows);
+
+    res.json({ data: allResult.rows });
+  } else {
+    let allResult = await pgClient.query("select * from products");
+    console.log("chceck all result!!!!!!", allResult.rows);
+
+    res.json({ data: allResult.rows });
+  }
+});
 
 // identifier
 app.use(express.static("public"));
