@@ -59,11 +59,11 @@ async function showProductDetails(productData) {
   document.querySelector(".size-button-area").innerHTML = sizeDetail;
 }
 
-function checkLength() {
-  const box = document.getElementById("box-tag");
+// function checkLength() {
+//   const box = document.getElementById("box-tag");
 
-  box.value.length > stockOnlyData == "disable";
-}
+//   box.value.length > stockOnlyData == "disable";
+// }
 
 function selectSize(targetProductOptionId) {
   for (let entry of document.querySelectorAll(`.size-button`)) {
