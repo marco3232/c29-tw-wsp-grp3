@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "data": "psql -U marco -f ./sql/schema.sql && ts-node init-data.ts"
+    "data": "psql -f ./sql/schema.sql && ts-node init-data.ts"
   },
   "keywords": [],
   "author": "",

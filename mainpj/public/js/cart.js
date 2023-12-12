@@ -4,21 +4,27 @@ async function inShoppingCart() {
   let shoppingCartRes = await fetch("/cart");
   let resp = await shoppingCartRes.json();
   let finalHTML = "";
+  
   for (let entry of resp) {
+    let x = `${entry.quantity}`
+    let y = `${entry.unit_price}`
+    let z = x*y
+
+    console.log("X",z)
+    
     finalHTML += `
-  <div class="card" style="width: 25rem">
-        <img src="/picture/${entry.image}" class="card-img-top" alt="..." style="width: 10rem"/>
-        <div class="card-body">
-          <h5 class="card-title">${entry.name}</h5>
-          <p class="card-text">
-           <p> ${entry.description}<p>
-           <p> ${entry.category_id} <p>
-           <p> Price : $${entry.unit_price} <p>
-           <p> Quantity ${entry.quantity}<p>
-          </p>
-          </div>
-          <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
-      </div>`;
+    <div class="row main align-items-center">
+    <div class="col-2"><img class="img-fluid" src="/picture/${entry.image}"></div>
+    <div class="col">
+      <div class="row text-muted">${entry.name}</div>
+      <div class="row description">${entry.description}</div>
+    </div>
+    <div class="col">
+      <!-- <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> -->
+      Qantity:${entry.quantity}
+    </div>
+    <div class="col">Price : ${z}<button><span class="close">remove</span></button></div>
+  </div>`
   }
   document.querySelector(".product-area").innerHTML = finalHTML;
 }

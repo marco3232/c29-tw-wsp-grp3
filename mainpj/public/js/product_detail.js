@@ -81,12 +81,27 @@ async function addToCart() {
     body: JSON.stringify({
       product_option_id: selectedProductOptionId,
       quantity: quantity,
-    
     }),
-    
   });
-
-
+  // if (resp.status == 401) 
+  if (resp.status == 200) {
+    const result = await resp.json();
+    console.log(result);
+    // Swal.fire({
+    //   icon: "error",
+    //   title: "Oops...",
+    //   text: "[Add cart Failed]Need to login!!!",
+    // });
+    window.location.href = "cart.html";
+  } else {
+   
+    // Swal.fire({
+    //   icon: "success",
+    //   title: "Cons!!",
+    //   text: "[Add cart success]Enjoy!!!",
+    // });
+    window.location.href = "login.html";
+}}
 
   // async function realInshoppingCart(){
   //   let inShoppingCart = await inShoppingCart()
@@ -128,7 +143,7 @@ async function addToCart() {
   // console.log(stockId);
   // window.location.reload ()
   // }
-}
+
 
 // function updateCartCount() {
 //   const cartItems = sessionStorage.getItem("cartItems");
