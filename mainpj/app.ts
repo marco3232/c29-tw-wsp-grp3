@@ -203,7 +203,10 @@ app.post("/addCart",isLoggedIn, async (req, res) => {
 });
 
 app.get("/cart",async(req,res)=>{
-  let result = await pgClient.query(`SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id`)
+
+
+  let result = await pgClient.query("SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id where user_id = (SELECT id from users where email = $1)"
+  ,[req.session.email])
   console.log("$$$$$$$$$$$$$$$",result.rows)
   res.json(result.rows)
 })
