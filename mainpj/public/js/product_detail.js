@@ -59,11 +59,12 @@ async function showProductDetails(productData) {
   document.querySelector(".size-button-area").innerHTML = sizeDetail;
 }
 
-// function checkLength() {
-//   const box = document.getElementById("box-tag");
+function checkLength() {
+  console.log(optionIdData[i].id,"DATDATDATDATDAT")
+  const box = document.getElementById("quantity");
 
-//   box.value.length > stockOnlyData == "disable";
-// }
+  box.value.length > optionIdData[i].id == false;
+}
 
 function selectSize(targetProductOptionId) {
   for (let entry of document.querySelectorAll(`.size-button`)) {
@@ -99,57 +100,30 @@ async function addToCart() {
   } else {
     window.location.href = "login.html";
   }
+
+
+const cartItems = sessionStorage.getItem("cartItems");
+
+const items = cartItems ? JSON.parse(cartItems) : [];
+console.log(cartItems, "??????????");
+
+items.push(stockId);
+
+sessionStorage.setItem("cartItems", JSON.stringify(items));
+updateCartCount();
+console.log(stockId);
+
 }
 
-// async function realInshoppingCart(){
-//   let inShoppingCart = await inShoppingCart()
-//   let finalHTML = "";
-//   for (let entry of all) {
-//     finalHTML += `
-//     <div class="card" style="width: 25rem">
-//           <img src="/picture/${entry.image}" class="card-img-top" alt="..." />
-//           <div class="card-body">
-//             <h5 class="card-title">${entry.name}</h5>
-//             <p class="card-text">
-//              <p> ${entry.description}<p>
-//              <p> ${entry.category_id} <p>
-//              <p> Price : $${entry.unit_price} <p>
-//             </p>
-//             <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
-//           </div>
-//         </div>
+function updateCartCount() {
+  const cartItems = sessionStorage.getItem("cartItems");
 
-// `;
-//   }
-//   document.querySelector(".product-area").innerHTML = finalHTML;
+  const items = cartItems ? JSON.parse(cartItems) : [];
 
-// }
+  const cartCountElement = document.querySelector(".size-button-area");
+  cartCountElement.textContent = items.length.toString();
+}
 
-// document
-//   .querySelector("#addToCart-area")
-//   .addEventListener("submit", async (e) => {});
-
-// const cartItems = sessionStorage.getItem("cartItems");
-
-// const items = cartItems ? JSON.parse(cartItems) : [];
-// console.log(cartItems, "??????????");
-
-// items.push(stockId);
-
-// sessionStorage.setItem("cartItems", JSON.stringify(items));
-// updateCartCount();
-// console.log(stockId);
-// window.location.reload ()
-// }
-
-// function updateCartCount() {
-//   const cartItems = sessionStorage.getItem("cartItems");
-
-//   const items = cartItems ? JSON.parse(cartItems) : [];
-
-//   const cartCountElement = document.querySelector(".size-button-area");
-//   cartCountElement.textContent = items.length.toString();
-// }
 async function getUsername() {
   let res = await fetch("/email");
 

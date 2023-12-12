@@ -194,6 +194,8 @@ app.get("/product", async (req: Request, res: Response) => {
 app.post("/addCart", isLoggedIn, async (req, res) => {
   console.log(req.body, req.session?.email);
 
+
+
   await pgClient.query(
     "INSERT INTO carts (product_option_id,user_id,quantity) VALUES  ($1,(SELECT id from users where email = $2),$3)",
     [req.body.product_option_id, req.session.email, req.body.quantity]
@@ -210,6 +212,10 @@ app.get("/cart",async(req,res)=>{
   console.log("$$$$$$$$$$$$$$$",result.rows)
   res.json(result.rows)
 })
+
+// app.get("/thankyou",async(req,res)=>{
+//   let result = await pgClient.query("SELECT * FROM receipts JOIN users on user_id = users.id join carts on users.id = carts.id")
+// })
 
 // identifier
 app.use(express.static("public"));

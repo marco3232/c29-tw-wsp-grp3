@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-</head>
-<body>
-    <div>Con Us</div>
-</body>
+<html>
+  <head>
+    <title>Localizing the Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+
+    <link rel="stylesheet" type="text/css" href="./css/contactus.css" />
+    <script type="module" src="./js/contactus.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14757.876365733415!2d114.1061254!3d22.3736668!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403f92aded177bd%3A0x1c798d562cbff654!2sTecky%20Academy!5e0!3m2!1szh-TW!2shk!4v1702374802364!5m2!1szh-TW!2shk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </body>
 </html>
