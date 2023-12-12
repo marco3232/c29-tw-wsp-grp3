@@ -202,10 +202,10 @@ app.post("/addCart", async (req, res) => {
   res.json({ message: "added to cart" });
 });
 
-app.get("/cart", async (req:Request,res:Response)=> {
-  let cartResult = await pgClient.query("SELECT * FROM carts JOIN product_options ON carts.id = product_options.id JOIN products ON products.id = product_options.product_id")
-  console.log("I am cartResult",cartResult)
-  res.json(cartResult)
+app.get("/cart",async(req:Request,res:Response)=>{
+  let result = await pgClient.query(`SELECT * FROM carts join product_options on product_option_id = product_options.id join products on product_id = products.id`)
+  console.log("$$$$$$$$$$$$$$$",result.rows)
+  res.json(result.rows)
 })
 
 // identifier
