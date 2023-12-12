@@ -73,7 +73,7 @@ async function addToCart() {
   let quantity = document.querySelector("#quantity").value;
   console.log("product option id is:", selectedProductOptionId, quantity);
 
-  let res = await fetch("/addCart", {
+  let resp = await fetch("/addCart", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -83,6 +83,14 @@ async function addToCart() {
       quantity: quantity,
     }),
   });
+  if (resp.status == 200){
+    const result = await resp.json();
+    console.log("*****",result)
+    window.location.href= "cart.html";
+  } 
+  else {
+    window.location.href ="login.html"
+  }
 
 
 

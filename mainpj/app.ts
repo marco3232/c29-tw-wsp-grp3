@@ -191,7 +191,7 @@ app.get("/product", async (req: Request, res: Response) => {
   });
 });
 
-app.post("/addCart", async (req, res) => {
+app.post("/addCart",isLoggedIn, async (req, res) => {
   console.log(req.body, req.session?.email);
 
   await pgClient.query(
