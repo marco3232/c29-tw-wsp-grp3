@@ -1,4 +1,3 @@
-
 let selectedProductOptionId;
 
 window.onload = async () => {
@@ -47,7 +46,9 @@ async function showProductDetails(productData) {
   let sizeDetail = `<div>`;
 
   for (let i = 0; i < 3; i++) {
-    sizeDetail += ` <button   ${
+    sizeDetail += ` <button class="size-button" id='button-${
+      optionIdData[i].id
+    }'  ${
       stockData[i].stock <= 0
         ? "disabled"
         : `onclick='selectSize("${optionIdData[i].id}")'`
@@ -65,6 +66,14 @@ async function showProductDetails(productData) {
 // }
 
 function selectSize(targetProductOptionId) {
+  for (let entry of document.querySelectorAll(`.size-button`)) {
+    entry.classList.remove("selected");
+  }
+
+  document
+    .querySelector(`#button-${targetProductOptionId}`)
+    .classList.toggle("selected");
+
   selectedProductOptionId = targetProductOptionId;
   console.log("check", selectedProductOptionId);
 }
@@ -83,33 +92,55 @@ async function addToCart() {
       quantity: quantity,
     }),
   });
-  if (resp.status == 200){
+  if (resp.status == 200) {
     const result = await resp.json();
-    console.log("*****",result)
-    window.location.href= "cart.html";
-  } 
-  else {
-    window.location.href ="login.html"
+    console.log("*****", result);
+    window.location.href = "cart.html";
+  } else {
+    window.location.href = "login.html";
   }
-
-
 }
-  
 
+// async function realInshoppingCart(){
+//   let inShoppingCart = await inShoppingCart()
+//   let finalHTML = "";
+//   for (let entry of all) {
+//     finalHTML += `
+//     <div class="card" style="width: 25rem">
+//           <img src="/picture/${entry.image}" class="card-img-top" alt="..." />
+//           <div class="card-body">
+//             <h5 class="card-title">${entry.name}</h5>
+//             <p class="card-text">
+//              <p> ${entry.description}<p>
+//              <p> ${entry.category_id} <p>
+//              <p> Price : $${entry.unit_price} <p>
+//             </p>
+//             <a href="product_detail.html?id=${entry.id}" class="btn btn-primary">Check details</a>
+//           </div>
+//         </div>
 
-  // const cartItems = sessionStorage.getItem("cartItems");
+// `;
+//   }
+//   document.querySelector(".product-area").innerHTML = finalHTML;
 
-  // const items = cartItems ? JSON.parse(cartItems) : [];
-  // console.log(cartItems, "??????????");
+// }
 
-  // items.push(stockId);
+// document
+//   .querySelector("#addToCart-area")
+//   .addEventListener("submit", async (e) => {});
 
-  // sessionStorage.setItem("cartItems", JSON.stringify(items));
-  // updateCartCount();
-  // console.log(stockId);
-  // window.location.reload ()
-  // }
+// const cartItems = sessionStorage.getItem("cartItems");
 
+// const items = cartItems ? JSON.parse(cartItems) : [];
+// console.log(cartItems, "??????????");
+
+// items.push(stockId);
+
+// sessionStorage.setItem("cartItems", JSON.stringify(items));
+// updateCartCount();
+// console.log(stockId);
+// window.location.reload ()
+// }
 
 // function updateCartCount() {
 //   const cartItems = sessionStorage.getItem("cartItems");

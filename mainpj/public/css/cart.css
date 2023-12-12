@@ -1,5 +1,5 @@
 body{
-    background: #ddd;
+    background: #0d7aa2;
     min-height: 100vh;
     vertical-align: middle;
     display: flex;
@@ -16,7 +16,7 @@ body{
     width: 100%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1rem;
-    border: transparent;
+    border: solid;
 }
 @media(max-width:767px){
     .card{
@@ -127,7 +127,7 @@ input:focus::-webkit-input-placeholder
     box-shadow: none;
     color: white;
     -webkit-box-shadow: none;
-    -webkit-user-select: none;
+    
     transition: none; 
 }
 .btn:hover{

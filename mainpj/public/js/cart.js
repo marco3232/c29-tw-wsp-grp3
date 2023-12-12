@@ -1,4 +1,5 @@
 inShoppingCart();
+
 async function inShoppingCart() {
   let shoppingCartRes = await fetch("/cart");
   let resp = await shoppingCartRes.json();
