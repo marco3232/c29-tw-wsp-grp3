@@ -194,6 +194,9 @@ app.get("/product", async (req: Request, res: Response) => {
 app.post("/addCart", isLoggedIn, async (req, res) => {
   console.log(req.body, req.session?.email);
 
+  // need to check stock count!!! use if ,else
+  
+
   await pgClient.query(
     "INSERT INTO carts (product_option_id,user_id,quantity) VALUES  ($1,(SELECT id from users where email = $2),$3)",
     [req.body.product_option_id, req.session.email, req.body.quantity]
