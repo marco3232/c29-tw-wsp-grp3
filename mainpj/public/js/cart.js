@@ -1,11 +1,4 @@
-
-window.onload = async () => {
-  let urlParams = new URLSearchParams(window.location.search);
-let targetId = urlParams.get("id");
-console.log("product id: ", targetId);
-const productDetails = await cartById(targetId);
-inShoppingCart(productDetails);
-}
+inShoppingCart();
 async function inShoppingCart() {
   let shoppingCartRes = await fetch("/cart");
   let resp = await shoppingCartRes.json();
@@ -33,11 +26,4 @@ async function inShoppingCart() {
   </div>`;
   }
   document.querySelector(".product-area").innerHTML = finalHTML;
-}
-
-async function cartById(id) {
-  const httpRes = await fetch(`/cart?id=${id}`);
-  const resp = await httpRes.json();
-  console.log("respppp",resp)
-  return;
 }
