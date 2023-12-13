@@ -26,7 +26,7 @@ async function showProductDetails(productData) {
   let optionIdData = productData.option_id_data;
   //   let stockOnlyData = productData.stockOnly_data;
   let allProductDetail = "";
-  allProductDetail += ` <div class="card" style="width: 20rem">
+  allProductDetail += ` <div class="card" style="width: 25rem">
     <img src="./picture/${basicData.image}" class="card-img-top" alt="..." />
     <div class="product-description">${basicData.description}
     <h3 class="product-name">${basicData.name}</h3>
@@ -131,7 +131,7 @@ async function getUsername() {
     let result = await res.json();
     document.querySelector(
       "#email-display"
-    ).innerHTML = `<h1>${result.data}</h1>`;
+    ).innerHTML = `<h1 class="email-font">Welcome!</h1> <h1 class="email-font">${result.data}</h1>`;
 
     document.querySelector(".bi-person-fill").href = "/personal_page.html";
   }

@@ -25,7 +25,8 @@ async function main() {
 async function insertUsers() {
   await client.query(
     `INSERT INTO users (first_name,last_name,email,password,contact_number) values ($1,$2,$3,$4,$5),($6,$7,$8,$9,$10)`,
-    [ "Marco",
+    [
+      "Marco",
       "Wong",
       "marco@tecky.io",
       await hashPassword("marco"),
@@ -34,7 +35,7 @@ async function insertUsers() {
       "Chow",
       "joz@tecky.io",
       await hashPassword("joz"),
-      "00000000"
+      "00000000",
     ]
   );
 }
@@ -58,20 +59,23 @@ type productType = {
 // products db
 async function insertProducts() {
   const result1 = await client.query(
-    `SELECT * FROM categories where name =$1`,["unders"]
+    `SELECT * FROM categories where name =$1`,
+    ["unders"]
   );
   const result2 = await client.query(
-    `SELECT * FROM categories where name =$1`,["pants"]
+    `SELECT * FROM categories where name =$1`,
+    ["pants"]
   );
   const result3 = await client.query(
-    `SELECT * FROM categories where name =$1`,["jackets"]
+    `SELECT * FROM categories where name =$1`,
+    ["jackets"]
   );
 
   const undersId = result1.rows[0].id;
   const pantsId = result2.rows[0].id;
   const jacketsId = result3.rows[0].id;
-  
-    // 心血
+
+  // 心血
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('HASHIBIRA INOSUKE Under','Only green color and very soft also can use combat style Beast Breathing','100',(SELECT id from categories where name ='under'),'under3.jpg'),
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('TOMIOKA GIYU Under','Only blue color and very soft also can use combat style Water Breathing','100',(SELECT id from categories where name ='under'),'under4.jpg'),
   // INSERT INTO products (name,description,unit_price,category_id,image) VALUES ('KAMADO TANJIRO Pants','Only green color and very comfortable also can use combat style Water Breathing','200',(SELECT id from categories where name ='pants'),'pants1.jpg'),
@@ -100,6 +104,22 @@ async function insertProducts() {
       image: "under2.jpg",
     },
     {
+      name: "KAMADO NEZUKO Under",
+      description:
+        "Only pink color and very soft also can use combat style Combustible Blood",
+      unit_price: 130,
+      category_id: undersId,
+      image: "under5.jpg",
+    },
+    {
+      name: "KOCHO SHINOBU Under",
+      description:
+        "Only purple color and very soft also can use combat style Insect Breathing",
+      unit_price: 130,
+      category_id: undersId,
+      image: "under6.jpg",
+    },
+	{
       name: "HASHIBIRA INOSUKE Under",
       description:
         "Only blue color and very soft also can use combat style Beast Breathing",
@@ -185,7 +205,13 @@ async function insertProducts() {
     await client.query(
       `INSERT INTO products(name,description,unit_price,category_id,image) 
   VALUES ($1,$2,$3,$4,$5)`,
-      [entry.name, entry.description, entry.unit_price, entry.category_id,entry.image]
+      [
+        entry.name,
+        entry.description,
+        entry.unit_price,
+        entry.category_id,
+        entry.image,
+      ]
     );
   }
 }
@@ -332,7 +358,7 @@ async function insertProductOptions() {
       size: "L",
       stock: 39,
     },
-	{
+    {
       product_id: 10,
       size: "S",
       stock: 20,
@@ -377,6 +403,36 @@ async function insertProductOptions() {
       size: "L",
       stock: 42,
     },
+    {
+      product_id: 13,
+      size: "S",
+      stock: 23,
+    },
+    {
+      product_id: 13,
+      size: "M",
+      stock: 0,
+    },
+    {
+      product_id: 13,
+      size: "L",
+      stock: 43,
+    },
+    {
+      product_id: 14,
+      size: "S",
+      stock: 24,
+    },
+    {
+      product_id: 14,
+      size: "M",
+      stock: 0,
+    },
+    {
+      product_id: 14,
+      size: "L",
+      stock: 44,
+    },
   ];
 
   for (let entry of productOptionData) {
@@ -395,5 +451,3 @@ async function insertProductOptions() {
 // [entry.user_id, entry.product_option_id, entry.quantity]
 //   );
 // }
-
-

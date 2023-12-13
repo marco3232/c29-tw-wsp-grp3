@@ -57,7 +57,7 @@ async function getUsername() {
     let result = await res.json();
     document.querySelector(
       "#email-display"
-    ).innerHTML = `<h1>${result.data}</h1>`;
+    ).innerHTML = `<h1 class="email-font">Welcome!</h1> <h1 class="email-font">${result.data}</h1>`;
 
     document.querySelector(".bi-person-fill").href = "/personal_page.html";
   }

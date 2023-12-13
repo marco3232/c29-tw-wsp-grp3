@@ -1,5 +1,18 @@
 body {
-  background-color: rgb(183, 255, 0);
+
+  background-image: url('../picture/background1.jpg');
+}
+.email-font {
+  display: inline-flex;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #fee440;
+  background-color: rgb(13, 14, 14);
+  border: solid white;
+  border-radius: 20px;
+  
+}
+.navbar-brand {
+  font-size: 30px;
 }
 
 .title {
@@ -60,3 +73,8 @@ body {
 .index-product-detail-area {
   display: flex;
 }
+
+
+
+
+
