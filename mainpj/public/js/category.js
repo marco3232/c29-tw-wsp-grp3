@@ -49,16 +49,3 @@ async function renderProducts(id) {
 
   document.querySelector(".product-area").innerHTML = finalHTML;
 }
-
-async function getUsername() {
-  let res = await fetch("/email");
-
-  if (res.status == 200) {
-    let result = await res.json();
-    document.querySelector(
-      "#email-display"
-    ).innerHTML = `<h1 class="email-font">Welcome!</h1> <h1 class="email-font">${result.data}</h1>`;
-
-    document.querySelector(".bi-person-fill").href = "/personal_page.html";
-  }
-}
