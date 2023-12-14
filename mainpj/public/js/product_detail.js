@@ -46,13 +46,11 @@ async function showProductDetails(productData) {
   let sizeDetail = `<div>`;
 
   for (let i = 0; i < 3; i++) {
-    sizeDetail += ` <button class="size-button" id='button-${
-      optionIdData[i].id
-    }'  ${
-      stockData[i].stock <= 0
+    sizeDetail += ` <button class="size-button" id='button-${optionIdData[i].id
+      }'  ${stockData[i].stock <= 0
         ? "disabled"
         : `onclick='selectSize("${optionIdData[i].id}")'`
-    }>${stockData[i].size}</button>`;
+      }>${stockData[i].size}</button>`;
   }
   sizeDetail += `</div>`;
 
@@ -60,7 +58,7 @@ async function showProductDetails(productData) {
 }
 
 function checkLength() {
-  console.log(optionIdData[i].id,"DATDATDATDATDAT")
+  console.log(optionIdData[i].id, "DATDATDATDATDAT")
   const box = document.getElementById("quantity");
 
   box.value.length > optionIdData[i].id == false;
@@ -83,35 +81,45 @@ async function addToCart() {
   let quantity = document.querySelector("#quantity").value;
   console.log("product option id is:", selectedProductOptionId, quantity);
 
-  let resp = await fetch("/addCart", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      product_option_id: selectedProductOptionId,
-      quantity: quantity,
-    }),
-  });
-  if (resp.status == 200) {
-    const result = await resp.json();
-    console.log("*****", result);
-    window.location.href = "cart.html";
+  if (selectedProductOptionId) {
+    let resp = await fetch("/addCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product_option_id: selectedProductOptionId,
+        quantity: quantity,
+      }),
+    });
+    if (resp.status == 200) {
+      const result = await resp.json();
+      console.log("*****", result);
+      window.location.href = "cart.html";
+    } else {
+      window.location.href = "login.html";
+    }
   } else {
-    window.location.href = "login.html";
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You must select size first!!!!",
+
+    });
+
   }
 
 
-const cartItems = sessionStorage.getItem("cartItems");
+  // const cartItems = sessionStorage.getItem("cartItems");
 
-const items = cartItems ? JSON.parse(cartItems) : [];
-console.log(cartItems, "??????????");
+  // const items = cartItems ? JSON.parse(cartItems) : [];
+  // console.log(cartItems, "??????????");
 
-items.push(stockId);
+  // items.push(stockId);
 
-sessionStorage.setItem("cartItems", JSON.stringify(items));
-updateCartCount();
-console.log(stockId);
+  // sessionStorage.setItem("cartItems", JSON.stringify(items));
+  // updateCartCount();
+  // console.log(stockId);
 
 }
 

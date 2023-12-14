@@ -27,7 +27,7 @@ inShoppingCart();
 
 
 async function inShoppingCart() {
-    
+
   let shoppingCartRes = await fetch("/thankyou");
   let resp = await shoppingCartRes.json();
   console.log(resp);
@@ -46,9 +46,13 @@ async function inShoppingCart() {
      
     </div>
     <div class="col">
-      <!-- <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> -->
+
       Quantity:${entry.quantity}
     </div>
+    <div class="col">
+
+    Size:${entry.size}
+  </div>
     <div class="ttlpce">Price : $${totalPrice}</div>
     
 
@@ -76,28 +80,16 @@ async function inShoppingCart() {
   document.querySelector(".totalItem").innerHTML = totalQuantityItem;
 
 
-let oLiReceiptHTML = "";
-oLiReceiptHTML += `<div class="col"><h4><b>Order List Receipt #$(entry.receipt.id)</b></h4></div>
+  let oLiReceiptHTML = "";
+  oLiReceiptHTML += `<div class="col"><h4><b>Order List Receipt #$(entry.receipt.id)</b></h4></div>
 `;
 
-document.querySelector(".oLiRece").innerHTML = oLiReceiptHTML;
+  document.querySelector(".oLiRece").innerHTML = oLiReceiptHTML;
 
 
-let userInPutHTML = "";
-userInPutHTML += `<div class="col-2">$(entry.user_name)</div>
+  let userInPutHTML = "";
+  userInPutHTML += `<div class="col-2">$(entry.user_name)</div>
 `;
 
-document.querySelector(".userInPut").innerHTML = userInPutHTML;
+  document.querySelector(".userInPut").innerHTML = userInPutHTML;
 }
-
-// document.querySelector('button.payment').addEventListener('click', makePayment)
-
-// async function makePayment(e){
-//     e.preventDefault()
-//     const httpResp = await fetch('/thankyou')
-//     const resp = await httpResp.json()
-//     if (resp.message == 'ok'){
-
-//     }
-
-// }

@@ -22,6 +22,9 @@ async function inShoppingCart() {
       <!-- <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> -->
       Quantity:${entry.quantity}
     </div>
+    <div class="col">
+      Size: ${entry.size}
+    </div>
     <div class="col">Price : $${totalPrice}</div>
     
 

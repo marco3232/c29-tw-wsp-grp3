@@ -1,10 +1,8 @@
-DROP DATABASE wspproject;
-CREATE DATABASE wspproject;
+DROP DATABASE c29_wsp_grp3;
+CREATE DATABASE c29_wsp_grp3;
 
 
-
-\c wspproject;
-
+\c c29_wsp_grp3;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -16,12 +14,14 @@ CREATE TABLE users(
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
 CREATE TABLE products(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
@@ -34,6 +34,7 @@ CREATE TABLE products(
     FOREIGN KEY (category_id) REFERENCES categories(id)
 
 );
+
 CREATE TABLE product_options(
     id SERIAL PRIMARY KEY,
     product_id INT,
@@ -43,6 +44,7 @@ CREATE TABLE product_options(
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
     user_id INT ,
