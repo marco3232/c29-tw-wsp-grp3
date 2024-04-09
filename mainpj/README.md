@@ -11,7 +11,7 @@
 | **Single Product Page**                                  | **Cart Page**                                           |
 
 # ERD
- ![ERD](ERD.png)
+ ![ERD](../ERD.png)
 # Setup
 To run locally, first install node_modules
 ```
