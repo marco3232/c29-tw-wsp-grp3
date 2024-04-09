@@ -56,12 +56,12 @@ app.get("/category", async (req, res) => {
       "select * from products where products.category_id = $1",
       [req.query.id]
     );
-    console.log("chceck all result!!!!!!", allResult.rows);
+    // console.log("chceck all result!!!!!!", allResult.rows);
 
     res.json({ data: allResult.rows });
   } else {
     let allResult = await pgClient.query("select * from products");
-    console.log("chceck all result!!!!!!", allResult.rows);
+    // console.log("chceck all result!!!!!!", allResult.rows);
 
     res.json({ data: allResult.rows });
   }
@@ -70,7 +70,7 @@ app.get("/category", async (req, res) => {
 app.get("/hot-picks", async (req: Request, res: Response) => {
   let allResult = await pgClient.query("select * from products limit 4");
   //change logic to select hot item when
-  console.log("chceck all result!!!!!!", allResult.rows);
+  // console.log("chceck all result!!!!!!", allResult.rows);
 
   res.json({ data: allResult.rows });
 });
