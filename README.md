@@ -4,14 +4,14 @@
 * Implemented secure user authentication and authorization for seamless login and checkout processes.
 * Technologies Used: HTML, CSS, JavaScript, TypeScript, Node.js, Express.js, RESTful API, PostgreSQL.
 # Screenshots
-| ![Home Page](screenshots/home.png)                       | ![Products Page](screenshots/products.png)              |
+| ![Home Page](./mainpj/screenshots/home.png)                       | ![Products Page](./mainpj/screenshots/products.png)              |
 | -------------------------------------------------------- | ------------------------------------------------------- |
 | **Home Page**                                            | **Products Page**                                       |
-| ![Single Product Page](screenshots/single-product.png)          | ![Cart Page](screenshots/cart.png)                      |
+| ![Single Product Page](./mainpj/screenshots/single-product.png)          | ![Cart Page](./mainpj/screenshots/cart.png)                      |
 | **Single Product Page**                                  | **Cart Page**                                           |
 
 # ERD
- ![ERD](../ERD.png)
+ ![ERD](./ERD.png)
 # Setup
 To run locally, first install node_modules
 ```
