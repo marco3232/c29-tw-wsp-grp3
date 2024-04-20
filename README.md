@@ -26,9 +26,13 @@ alter role "username" with login;
 ```
 Then create a .env file in the mainpj with .env.example. You may change database user/password/secert as you may wish.
 # Run app
-Start both client and server concurrently from the root directory.
+Start both client and server concurrently from the root directory.\
+If your pc is Windows please run  ```npm run data-win```\
+If your pc is Mac please run  ```npm run data-mac```
+
 ```
 cd mainpj
+npm run data-win or npm run data-mac
 npm run dev
 ```
 Go to http://localhost:8080 to view the app running on your browser.
